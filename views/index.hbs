@@ -1,0 +1,66 @@
+<div id="content">
+  <!--{{! Title from Sheet tab }}-->
+  <h2>
+    <a href="/projects">{{ title }}</a>
+  </h2>
+  
+  <!--{{! Insert any static HTML }}-->
+  <div id="static-html">
+    {{{ data.currentWorksheet.staticHTML }}}
+  </div>
+  
+  <!--{{! Iterate through sheet rows }}-->
+  {{#each rows }}
+    <div class="project">
+      
+      {{#if this/[Project Name] }}
+      {{#if this.projectId }}
+      <h3>
+        <a href="/projects/{{this.projectId}}">{{ this/[Project Name] }}</a>
+      </h3>
+      {{/if}}
+      {{/if}}
+      <!--{{! Non-images are copied directly }}-->
+      <ul class="project-fields">
+        <li><strong>Index:</strong> {{@index}}</li>
+        {{#each this}}
+          {{#unless this.image}}
+            <li>
+              <strong>{{@key}}:</strong><span id="project-{{../projectId}}-field-{{@key}}-reaction-count">{{this}}</span>
+            </li>
+          {{/unless}}
+        {{/each}}
+      </ul>
+      
+      <!--{{! Images in a separate list }}-->
+      <div class="images">
+        {{#each this}}
+          {{#if this.image}}
+            <div class="image">
+              <!--{{! Edit URL to make hotlinkable }}-->
+               <a href="https://drive.google.com/uc?export=view&id={{this.url}}"><img src="https://drive.google.com/uc?export=view&id={{this.url}}" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
+            </div>
+          {{/if}}
+        {{/each}}
+      </div>
+      
+      <!--{{! Buttons for incrementing reactions }}-->
+      <div class="reaction-buttons">
+        <ul>
+          {{#each ../reactions}}
+          <li>
+            <button onclick="sendReaction({{../this.projectId}}, '{{this}}')">
+              {{this}}
+            </button>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+
+    </div>
+  
+
+
+    <hr>
+  {{/each}}
+</div>

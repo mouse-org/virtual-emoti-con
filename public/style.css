@@ -1,0 +1,57 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Ariel", sans-serif;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+#header, #content h2 {
+  text-align: center; 
+}
+
+#menu {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+#menu li {
+  display: inline-block;
+  margin: 0 1em;
+}
+
+.plant {
+  width: 100%;
+  display: flex;
+  margin: 2em 0;
+  align-content: stretch;
+}
+
+.facts {
+  flex: 1 1 auto;
+  width: 50%;
+  max-width: 300px;
+  padding-right: 10px;
+}
+
+.images {
+  flex: 1 1 auto;
+  width: 50%;
+}
+
+.image {
+  flex: 1 1 auto;
+  width: 100%;
+  max-width: 300px;
+  display: inline-block;
+  padding-left: 10px;
+  height: auto;
+}
+
+.image img {
+  width: 100%;
+  height: auto;
+}

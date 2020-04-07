@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link id="favicon" rel="icon" href="{{ favicon }}" type="image/x-icon">
+    <link rel="stylesheet" href="/style.css" type="text/css">
+  </head>
+  <body>
+    <h1 id="header">
+      {{ docTitle }}
+    </h1>
+    
+    <ul id="menu">
+      {{#each data.worksheets }}
+        {{#unless this.only}}
+          <li>
+            <h3>
+              {{#if this.current }}
+                {{ this.title }}
+              {{else}}
+                <a href="{{ this.title }}">
+                  {{ this.title }}
+                </a>
+              {{/if}}
+            </h3>
+          </li>
+        {{/unless}}
+      {{/each}}
+    </ul>
+    
+    {{{ body }}}
+  </body>
+  <script src="/script.js"></script>
+</html>
