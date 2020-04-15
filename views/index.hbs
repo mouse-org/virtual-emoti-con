@@ -1,8 +1,15 @@
 <div id="content">
   <!--{{! Title from Sheet tab }}-->
+  <!--
   <h2>
     <a href="/projects">{{ title }}</a>
   </h2>
+  -->
+  <div id="header-logo-container">
+    <a href="/projects">
+      <img id="header-logo" src="https://cdn.glitch.com/ba2b66d5-8c8f-4c1a-8a93-c0aff3884c8e%2Fimage4.png?v=1586530017858" alt="Emoti-Con logo" />
+    </a>
+  </div>
   
   <!--{{! Insert any static HTML }}-->
   <div id="static-html">
@@ -10,57 +17,81 @@
   </div>
   
   <!--{{! Iterate through sheet rows }}-->
-  {{#each rows }}
-    <div class="project">
+  <div id="index-projects-container">
+    
+
+    {{#each rows }}
+      <div class="index-project">
+        
+
+        <!-- Project Name Header -->
+        {{#if [Project Name] }}
+        {{#if projectId }}
+        <h3 class="project-name">
+          <a href="/projects/{{projectId}}">{{ [Project Name] }}</a>
+        </h3>
+        {{/if}}
+        {{/if}}
+        
+        
+        <!-- School or Program Header -->
+        {{#if [School / Program Name] }}
+        <h4 class="project-header">
+          {{ [School / Program Name] }}
+        </h4>
+        {{/if}}
+        
+        
+        <!-- Type of project -->
+        {{#if [Type of project] }}
+        <h4 class="project-header">
+          {{ [Type of project] }}
+        </h4>
+        {{/if}}
+        
+        
+        <!-- First photo -->
+        {{#if [Add a photo!] }}
+        {{#if [Add a photo!].images }}
+        {{#if [Add a photo!].urls }}
+        {{#if [Add a photo!].urls.[0] }}
+        <div class="cover-image">
+          <!--{{! Edit URL to make hotlinkable }}-->
+          <a href="https://drive.google.com/uc?export=view&id={{[Add a photo!].urls.[0]}}">
+            <img src="https://drive.google.com/uc?export=view&id={{[Add a photo!].urls.[0]}}" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." />
+          </a>
+        </div>
+        {{/if}}
+        {{/if}}
+        {{/if}}
+        {{/if}}
+        
+        <!-- Description of Project -->
+        
+        {{#if [Description of Project] }}
+        <p class="project-description">
+          {{ [Description of Project] }}
+        </p>
+        {{/if}}
+        
+        
+        <div class="reactions-container">
+          
+          <div class="reaction">
+            <h4>
+              <button onclick="sendReaction({{projectId}}, '📢')" class="reaction-button">📢 <span id="project-{{projectId}}-field-📢-reaction-count">{{ 📢 }}</span></button>
+            </h4>
+            <h4>
+              <button onclick="sendReaction({{projectId}}, '🌍')" class="reaction-button">🌍 <span id="project-{{projectId}}-field-🌍-reaction-count">{{ 🌍 }}</span></button>
+            </h4>
+            <h4>
+              <button onclick="sendReaction({{projectId}}, '🦄')" class="reaction-button">🦄 <span id="project-{{projectId}}-field-🦄-reaction-count">{{ 🦄 }}</span></button>
+            </h4>
+          </div>
       
-      {{#if this/[Project Name] }}
-      {{#if this.projectId }}
-      <h3>
-        <a href="/projects/{{this.projectId}}">{{ this/[Project Name] }}</a>
-      </h3>
-      {{/if}}
-      {{/if}}
-      <!--{{! Non-images are copied directly }}-->
-      <ul class="project-fields">
-        <li><strong>Index:</strong> {{@index}}</li>
-        {{#each this}}
-          {{#unless this.image}}
-            <li>
-              <strong>{{@key}}:</strong><span id="project-{{../projectId}}-field-{{@key}}-reaction-count">{{this}}</span>
-            </li>
-          {{/unless}}
-        {{/each}}
-      </ul>
-      
-      <!--{{! Images in a separate list }}-->
-      <div class="images">
-        {{#each this}}
-          {{#if this.image}}
-            <div class="image">
-              <!--{{! Edit URL to make hotlinkable }}-->
-               <a href="https://drive.google.com/uc?export=view&id={{this.url}}"><img src="https://drive.google.com/uc?export=view&id={{this.url}}" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
-            </div>
-          {{/if}}
-        {{/each}}
+        </div>
+
       </div>
-      
-      <!--{{! Buttons for incrementing reactions }}-->
-      <div class="reaction-buttons">
-        <ul>
-          {{#each ../reactions}}
-          <li>
-            <button onclick="sendReaction({{../this.projectId}}, '{{this}}')">
-              {{this}}
-            </button>
-          </li>
-          {{/each}}
-        </ul>
-      </div>
-
-    </div>
-  
-
-
-    <hr>
-  {{/each}}
+    {{/each}}
+  </div>
 </div>

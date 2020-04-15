@@ -2,6 +2,9 @@ function sendReaction(projectId, reaction) {
   console.log("project id:", projectId);
   console.log("reaction:", reaction);
   
+  const counterIdBefore = `project-${projectId}-field-${reaction}-reaction-count`;
+  const counterBefore = document.getElementById(counterIdBefore);
+  counterBefore.innerHTML = Number.isNaN(parseInt(counterBefore.innerHTML)) ? 1 : parseInt(counterBefore.innerHTML) + 1;
   
   fetch(`/api/${projectId}/${reaction}/plus-one`)
   .then((response) => {

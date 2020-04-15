@@ -1,10 +1,17 @@
+.debug {
+  word-wrap: break-word;
+  font-size: 10px;
+  line-height: 14px;
+  margin: 5px;
+  font-weight: normal;
+}
 * {
   box-sizing: border-box;
 }
 
 body {
   font-family: "Ariel", sans-serif;
-  max-width: 600px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
@@ -23,18 +30,79 @@ body {
   margin: 0 1em;
 }
 
-.plant {
+#header-logo-container {
+  text-align: center;
   width: 100%;
-  display: flex;
-  margin: 2em 0;
-  align-content: stretch;
 }
 
-.facts {
-  flex: 1 1 auto;
-  width: 50%;
-  max-width: 300px;
-  padding-right: 10px;
+#header-logo-container img {
+  width: 300px;
+  margin: 0 auto;
+}
+
+#index-projects-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+#index-projects-container::after {
+  content: "";
+  flex: auto;
+}
+
+.index-project {
+  width: 310px;
+  border: 2px solid #ffdae7;
+  padding: 10px;
+  margin: 1em 10px;
+  border-radius: 10px;
+}
+
+.project-name {
+  width: 100%;
+  text-align: center;
+  margin: .5em 0 .25em;
+}
+
+.project-name a {
+  text-decoration: none;
+  color: black;
+}
+
+.project-name a:hover {
+  text-decoration: underline;
+}
+
+.project-header {
+  width: 100%;
+  font-weight: normal;
+  font-size: 14px;
+  text-align: center;
+  margin: .25em 0;
+}
+
+.cover-image {
+  width: 100%;
+  margin: 1em 0 .5em;
+}
+
+.reaction h4 {
+  display: inline-block;
+  margin: 5px;
+}
+
+.reaction-button {
+  background-color: none;
+  border: none;
+  font-size: 20px;
+  border-radius: 10px;
+  outline:none;
+}
+
+.reaction-button:hover {
+  cursor: pointer;
+  background-color: #ffdae7;
 }
 
 .images {
