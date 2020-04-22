@@ -14,10 +14,13 @@
     <div class="project">
       
       {{#if this/[Project Name] }}
-      {{#if this.projectId }}
+      {{#if this.rowId }}
       <h3>
-        <a href="/projects/{{this.projectId}}">{{ this/[Project Name] }}</a>
+        <a href="/projects/{{this.rowId}}">{{ this/[Project Name] }}</a>
       </h3>
+      <div class="hidden" id="project-id">
+        {{this.rowId}}
+      </div>
       {{/if}}
       {{/if}}
       <!--{{! Non-images are copied directly }}-->
@@ -26,7 +29,7 @@
         {{#each this}}
           {{#unless this.image}}
             <li>
-              <strong>{{@key}}:</strong><span id="project-{{../projectId}}-field-{{@key}}-reaction-count">{{this}}</span>
+              <strong>{{@key}}:</strong><span id="project-{{../rowId}}-field-{{@key}}-reaction-count">{{this}}</span>
             </li>
           {{/unless}}
         {{/each}}
@@ -103,7 +106,7 @@
         <ul>
           {{#each ../reactions}}
           <li>
-            <button onclick="sendReaction({{../this.projectId}}, '{{this}}')">
+            <button onclick="sendReaction({{../this.rowId}}, '{{this}}')">
               {{this}}
             </button>
           </li>
@@ -111,7 +114,7 @@
         </ul>
       </div>
       
-      <hr>
+      <hr/>
       
       <!--{{! Judge feedback }}-->
       <div class="judge-feedback">
@@ -119,18 +122,66 @@
           Judge Feedback:
         </h4>
         <ul>
-          {{#each ../judgeData.rows}}
-            <li>
+          {{#each ../responsesData.rows}}
+            {{#if judge }}
+            <li class="judge-feedback-item">
+              <p>
+                <strong>Judge Feedback Id:</strong>  {{ feedbackId }}
+              </p>
               <p>
                 <strong>Project Id:</strong> {{ projectId }}
               </p>
               <p>
-                <strong>Feedback:</strong> {{ publicFeedback }}
+                <strong>Feedback:</strong> {{ feedback }}
+              </p>
+              <p>
+                <strong>Author:</strong> {{ author }}
               </p>
             </li>
+            {{/if }}
           {{/each}}
         </ul>
       </div>
+      
+      <hr/>
+      
+      <!--{{! Public feedback }}-->
+      <div class="public-feedback">
+        <h4>
+          Public Feedback:
+        </h4>
+        
+        <ul>
+          {{#each ../responsesData.rows}}
+            {{#unless judge }}
+            <li class="public-feedback-item">
+              <p>
+                <strong>Public Feedback Id:</strong>  {{ feedbackId }}
+              </p>
+              <p>
+                <strong>Project Id:</strong> {{ projectId }}
+              </p>
+              <p>
+                <strong>Feedback:</strong> {{ feedback }}
+              </p>
+              <p>
+                <strong>Author:</strong> {{ author }}
+              </p>
+            </li>
+            {{/unless }}
+          {{/each}}
+        </ul>
+        
+        <h5>
+          Add feedback:
+        </h5>
+
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfNpjQfmNWAtiotPu1hC7BQki99gOmclUbNynRhrpe-hlvS7w/viewform?embedded=true" width="640" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        
+        
+        
+      </div>
+      
 
     </div>
   

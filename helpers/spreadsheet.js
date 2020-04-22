@@ -1,4 +1,4 @@
-module.exports = async function getSpreadsheetData(doc, sheetIndex = 0, offset = false, limit = false, editable = false) {
+module.exports = async function getSpreadsheetData(doc, sheetIndex = 0, offset = false, limit = false, editable = false, appendable = false) {
   
   try {
     // Authenticate with Google
@@ -10,6 +10,10 @@ module.exports = async function getSpreadsheetData(doc, sheetIndex = 0, offset =
     // Load doc, sheet and sheet headers
     await doc.loadInfo();
     const sheet = doc.sheetsByIndex[sheetIndex];
+    
+    if (appendable) {
+      return sheet;
+    }
     
     await sheet.loadHeaderRow();
     
@@ -53,7 +57,7 @@ module.exports = async function getSpreadsheetData(doc, sheetIndex = 0, offset =
 async function parseSpreadsheetData(rows, headers) {
   return rows.map(i => {
     let rowData = {
-      projectId: i.rowNumber
+      rowId: i.rowNumber
     }
     headers.forEach(j => {
       rowData[j] = parseCell(i[j], j);

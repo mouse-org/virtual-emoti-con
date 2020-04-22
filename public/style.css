@@ -15,6 +15,10 @@ body {
   margin: 0 auto;
 }
 
+.hidden {
+  display: none;
+}
+
 #header, #content h2 {
   text-align: center; 
 }
@@ -122,4 +126,26 @@ body {
 .image img {
   width: 100%;
   height: auto;
+}
+
+.judge-feedback-item, .public-feedback-item {
+  border: 1px solid #4F4F4F;
+  margin: 5px;
+}
+
+.public-feedback form > label, .public-feedback form > textarea, .public-feedback form > input {
+  display: inline-block;
+  width: 100%;
+  margin: 5px 0;
+}
+
+.public-feedback form > textarea {
+  height: 4em;
+}
+
+.public-feedback form > textarea, .public-feedback form > input {
+  margin-bottom: 10px;
+  font-size: 20px;
+  line-height: 20px;
+  padding: 5px;
 }

@@ -26,7 +26,7 @@ router.get("/", async function(req, res) {
 
 router.get("/:projectId", async function(req, res) {
   const projectSheetIndex = 0;
-  const judgeSheetIndex = 1;
+  const projectResponsesSheetIndex = 1;
   const rowIndex = parseInt(req.params.projectId) - 2;
   
   try {
@@ -38,28 +38,40 @@ router.get("/:projectId", async function(req, res) {
     }
     
     // Get judging data for specified project
-    const judgeSheetData = await getSpreadsheetData(doc, judgeSheetIndex);
+    const projectResponsesSheetData = await getSpreadsheetData(doc, projectResponsesSheetIndex);
     
-    judgeSheetData.rows = judgeSheetData.rows.map(i => {
+    projectResponsesSheetData.rows = projectResponsesSheetData.rows.map((i, index) => {
       const projectId = i["What is the project id of the project you are judging?"];
+      
       if (projectId === req.params.projectId) {
-        return {
+        const judge = i["Are you an Emoti-Con judge?"] === "Yes";
+        const projectData = {
+          feedbackId: i.rowId,
           projectId: projectId,
-          publicFeedback: i["Public Narrative Feedback"]
+          judge: judge
         }
+        
+        if (judge) {
+          projectData.feedback = i["Public Narrative Feedback"];
+          projectData.author = i["What is your name?"];
+        } else {
+          projectData.feedback = i["What positive feedback do you have for the creators of this project?"];
+          projectData.author = i["What is your first name?"] + ", " + i["What city do you live in?"];
+        }
+        
+        return projectData;
       }
     });
     
     const combinedData = {
       docTitle: projectSheetData.docTitle,
       projectData: projectSheetData,
-      judgeData: judgeSheetData
+      responsesData: projectResponsesSheetData
     }
     
     const renderData = Object.assign({}, templateData, combinedData);
 
     res.render("project", renderData);
-    
     
   } catch (error) {
     console.log("Error:")
