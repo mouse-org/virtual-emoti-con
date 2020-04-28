@@ -64,5 +64,7 @@ function sendPublicFeedback(projectId, event) {
 
 
 var publicFeedbackSubmit = document.getElementById("public-feedback-submit");
-var projectId = document.getElementById("project-id").innerHTML.trim();
-publicFeedbackSubmit.addEventListener('click', sendPublicFeedback.bind(this, projectId));
+  if (publicFeedbackSubmit) {
+  var projectId = document.getElementById("project-id").innerHTML.trim();
+  publicFeedbackSubmit.addEventListener('click', sendPublicFeedback.bind(this, projectId));
+}

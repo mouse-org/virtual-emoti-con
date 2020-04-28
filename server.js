@@ -9,7 +9,7 @@ const FAVICON_URL = "https://cdn.glitch.com/0e6dc89f-4128-4c89-b997-8fa6f2d9cc71
 
 
 app.get("/", function(req, res) {
-  res.send("<a href='projects'>Projects</a>");
+  res.render("announcement");
 })
 
 var apiRouter = require('./routes/api')

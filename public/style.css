@@ -5,15 +5,185 @@
   margin: 5px;
   font-weight: normal;
 }
+
 * {
   box-sizing: border-box;
 }
 
+/* Fonts */
+
+.press-start {
+  font-family: 'Press Start 2P', cursive;
+}
+
 body {
   font-family: "Ariel", sans-serif;
-  max-width: 1000px;
+  max-width: 900px;
   margin: 0 auto;
 }
+
+img {
+  max-width: 100%;
+}
+
+/* Announcement */
+
+#announcement-container {
+  margin: 2em auto;
+  font-family: 'Signika', sans-serif;
+  text-align: center;
+  margin: 10px;
+}
+
+.section, .rel-container {
+  position: relative;
+}
+
+.align-left {
+  text-align: left;
+}
+
+/* Color */
+
+.lb-bg {
+  background-color: #4cc7f8;
+  color: white;
+}
+
+.lg-bg {
+  background-color: #4cf8b6;
+}
+
+.pink-text {
+  color: #ff00ff;
+}
+
+
+
+/* Images */
+
+.side-by-side-images {
+  max-width: 100%;
+}
+
+.side-by-side-images img {
+  text-align: center;
+  display: inline-block;
+  max-width: 49%;
+}
+
+.sm-img {
+  max-height: 100px;
+}
+
+.med-img {
+  max-height: 200px;
+}
+
+.lg-img {
+  max-height: 400px;
+}
+
+/* Text */
+
+.headline {
+  padding: 40px;
+  font-size: 60px;
+  line-height: 64px;
+  font-weight: normal;
+  max-width: 100%;
+}
+
+.highlight {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 22px;
+  line-height: 28px;
+  max-width: 600px;
+  text-align: justify;
+  margin: 10px 0;
+  border-radius: 1px;
+}
+
+.floating-text {
+  position: absolute;
+  width: 100%;
+  top: 1em;
+}
+
+.sinking-text {
+  position: absolute;
+  width: 100%;
+  bottom: 1em;
+  right: 0;
+}
+
+.star-list {
+  list-style-type: none;
+  padding-left: 15px;
+}
+
+.star-list li:before {
+  content: "\2605";
+}
+
+.bigger {
+  font-size: 150%;
+  line-height: 160%;
+}
+
+
+@media (max-width: 550px) {
+  .headline {
+    font-size: 40px;
+  }
+}
+
+
+/*
+
+#container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+
+
+
+.white-frame-border {
+  border: 7px solid white;
+}
+
+
+
+ul li {
+  padding: 3px 0;
+  margin: 10px 0;
+}
+
+
+
+
+.overlay-text {
+  position: absolute;
+  top: 0;
+}
+
+
+
+.star-list li:after {
+  content: "<br/>";
+}
+
+
+.center {
+  text-align: center;
+}
+
+*/
+
+
+/* Project Fair */
 
 .hidden {
   display: none;
