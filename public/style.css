@@ -54,6 +54,10 @@ img {
   background-color: #4cf8b6;
 }
 
+.pink-bg {
+  background-color: #ffdae7;
+}
+
 .pink-text {
   color: #ff00ff;
 }
@@ -82,6 +86,18 @@ img {
 
 .lg-img {
   max-height: 400px;
+}
+
+.section-divider ul {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  padding: 0;
+}
+
+.section-divider ul li {
+  max-width: 80px;
+  list-style-type: none;
 }
 
 /* Text */
@@ -132,12 +148,56 @@ img {
   line-height: 160%;
 }
 
+.section-title {
+  width: 100%;
+  text-align: center;
+}
+
+.spacer {
+  display: block;
+}
+
 
 @media (max-width: 550px) {
   .headline {
     font-size: 40px;
   }
 }
+
+
+/* Section 4 */
+
+#calendar-grid {
+  text-align: left;
+}
+
+#calendar-grid, #calendar-grid ul {
+  padding: 0;
+}
+
+#calendar-grid li {
+  list-style-type: none;
+  display: inline-block;
+  width: 100%;
+}
+
+#calendar-grid ul {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  border-bottom: 2px solid  #4cc7f8;
+}
+
+#calendar-grid li ul li:first-child {
+  width: 100px;
+  text-align: right;
+  
+}
+
+#calendar-grid li ul li {
+  width: Calc(100% - 100px);
+}
+
 
 
 /*
