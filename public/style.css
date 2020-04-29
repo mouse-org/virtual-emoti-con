@@ -62,6 +62,10 @@ img {
   color: #ff00ff;
 }
 
+.black-text {
+  color: black;
+}
+
 
 
 /* Images */
@@ -160,7 +164,7 @@ li.close-list {
   padding-left: 15px;
 }
 
-.star-list > li, .dot-list > li {
+li {
   width: 100%;
   vertical-align: top;
 }
@@ -249,48 +253,114 @@ li.close-list {
 }
 
 
+/* section 7 */
 
-/*
+#section-7 ul {
+  display: inline-block;
+  margin: 0 20px 1em 0;
+  width: 50%;
+  vertical-align: top;
+}
 
-#container {
-  max-width: 900px;
-  margin: 0 auto;
+#section-7 img {
+  display: inline-block;
+  width: Calc(48% - 20px);
+  margin: 0 0 1em;
+}
+
+@media (max-width: 500px) {
+  #section-7 ul, #section-7 img {
+    width: 100%;
+    padding: .5em 30px;
+  }
+}
+
+/* Section 8 */
+
+#section-8 .pre-title {
+  font-style: italic;
+  font-weight: bold;
+}
+
+#section-8 .shout {
+  font-size: 40px;
+  line-height: 50px;
+  font-weight: normal;
+}
+
+/* section-9 */
+
+#section-9 ul li ul li span {
+  padding: 1px 0;
+  margin: 0;
+}
+
+.side-by-side-lists {
+  width: 100%;
+}
+
+.side-by-side-lists .left, .side-by-side-lists .right {
+  width: 46%;
+  display: inline-block;
+  vertical-align: top;
+  margin: 0 1.5%;
+}
+
+.side-by-side-lists ul {
+  padding: 0;
+  text-align: left;
+}
+
+.side-by-side-lists li {
+  display: inline-block;
+  margin: 5px;
+}
+
+.side-by-side-lists li a {
+  margin: 2px;
+  color: black;
+  text-decoration: none;
+}
+
+.side-by-side-lists li a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 800px) {
+  .side-by-side-lists .left, .side-by-side-lists .right {
+    width: 100%;
+    display: inline-block;
+  }
+}
+
+/* Section 11 */
+
+.social-images {
+  max-width: 500px
+}
+
+.social-list {
+  display: flex;
+  justify-content: center;
+}
+
+.social-list li {
+  display: inline-block;
+}
+
+.image-list li {
+  list-style-type: none;
+  display: inline-block;
+  max-width: 100px;
+  padding: 0 10px;
+}
+
+.image-list li img {
+  max-width: 100px;
+  display: inline-block;
 }
 
 
-
-
-.white-frame-border {
-  border: 7px solid white;
-}
-
-
-
-ul li {
-  padding: 3px 0;
-  margin: 10px 0;
-}
-
-
-
-
-.overlay-text {
-  position: absolute;
-  top: 0;
-}
-
-
-
-.star-list li:after {
-  content: "<br/>";
-}
-
-
-.center {
-  text-align: center;
-}
-
-*/
 
 
 /* Project Fair */
