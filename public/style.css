@@ -448,6 +448,7 @@ li {
   width: 600px;
   display: inline-block;
   margin: 0 auto;
+  padding: 0;
 }
 
 .social-images img {
