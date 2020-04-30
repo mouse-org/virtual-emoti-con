@@ -452,6 +452,7 @@ li {
 
 .social-images img {
   display: inline-block;
+  max-width: 150px;
 }
 
 .social-list {
