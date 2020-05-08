@@ -41,6 +41,22 @@
           {{/unless}}
         {{/each}}
       </ul>
+
+      <div class="reactions-container">
+          
+        <div class="reaction">
+          <h4>
+            <button onclick="sendReaction({{rowId}}, '📢')" class="reaction-button">📢 <span id="project-{{rowId}}-field-📢-reaction-count">{{ 📢 }}</span></button>
+          </h4>
+          <h4>
+            <button onclick="sendReaction({{rowId}}, '🌍')" class="reaction-button">🌍 <span id="project-{{rowId}}-field-🌍-reaction-count">{{ 🌍 }}</span></button>
+          </h4>
+          <h4>
+            <button onclick="sendReaction({{rowId}}, '🦄')" class="reaction-button">🦄 <span id="project-{{rowId}}-field-🦄-reaction-count">{{ 🦄 }}</span></button>
+          </h4>
+        </div>
+    
+      </div>
       
       <!--{{! Images in a separate list }}-->
       <div class="images">

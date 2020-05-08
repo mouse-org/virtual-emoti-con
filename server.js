@@ -1,23 +1,27 @@
 var express = require('express');
 var app = express();
 app.use(express.static('public'));
-const hbs = require("hbs");
+let hbs = require("hbs");
+const customHelpers = require('./customHelpers');
+hbs = customHelpers(hbs)
 app.set("view engine", "hbs");
 app.set("views", "views");
+
+
 
 const FAVICON_URL = "https://cdn.glitch.com/0e6dc89f-4128-4c89-b997-8fa6f2d9cc71%2Femoti-con_logo_square.png?v=1586189918610";
 
 
 app.get("/", function(req, res) {
-  res.render("home");
+  res.render("home", {layout: "announcementLayout"});
 });
 
 app.get("/submit-a-project", function(req, res) {
-  res.render("submit-a-project");
+  res.render("submit-a-project", {layout: "announcementLayout"});
 });
 
 app.get("/about", function(req, res) {
-  res.render("about");
+  res.render("about", {layout: "announcementLayout"});
 });
 
 var apiRouter = require('./routes/api')

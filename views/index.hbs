@@ -29,69 +29,61 @@
         <!-- Project Name Header -->
         {{#if [Project Name] }}
         {{#if rowId }}
-        <h3 class="project-name">
-          <a href="/projects/{{rowId}}">{{ [Project Name] }}</a>
-        </h3>
+        <h2 class="project-name">
+          <a href="/projects/{{rowId}}">“{{ [Project Name] }}”</a>
+        </h2>
         {{/if}}
         {{/if}}
+
+        <!-- Type of project -->
+        {{#if [Project Category] }}
+        <h4 class="project-header">
+          {{ projectCategory [Project Category] }}
+        </h4>
+        {{/if}}
+
+        <!-- Student names or count -->
+
+        {{#if (over2Students [Student Count]) }}
+          {{#if [Student Count] }}
+            <h3 class="project-header">
+              By {{ [Student Count] }} Students
+            </h3>
+          {{/if }}
+        {{else }}
+          {{#if [Student Names] }}
+            <h3 class="project-header">
+              By {{ [Student Names] }}
+            </h3>
+          {{/if }}
+        {{/if }}
+
         
         
         <!-- School or Program Header -->
-        {{#if [School / Program Name] }}
+        {{#if [Organization or Program Affiliation] }}
         <h4 class="project-header">
-          {{ [School / Program Name] }}
+          From {{ [Organization or Program Affiliation] }}
         </h4>
         {{/if}}
-        
-        
-        <!-- Type of project -->
-        {{#if [Type of project] }}
-        <h4 class="project-header">
-          {{ [Type of project] }}
-        </h4>
-        {{/if}}
-        
-        
-        <!-- First photo -->
-        {{#if [Add a photo!] }}
-        {{#if [Add a photo!].images }}
-        {{#if [Add a photo!].urls }}
-        {{#if [Add a photo!].urls.[0] }}
-        <div class="cover-image">
-          <!--{{! Edit URL to make hotlinkable }}-->
-          <a href="https://drive.google.com/uc?export=view&id={{[Add a photo!].urls.[0]}}">
-            <img src="https://drive.google.com/uc?export=view&id={{[Add a photo!].urls.[0]}}" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." />
-          </a>
-        </div>
-        {{/if}}
-        {{/if}}
-        {{/if}}
-        {{/if}}
-        
-        <!-- Description of Project -->
-        
-        {{#if [Description of Project] }}
-        <p class="project-description">
-          {{ [Description of Project] }}
-        </p>
-        {{/if}}
-        
-        
-        <div class="reactions-container">
-          
-          <div class="reaction">
-            <h4>
-              <button onclick="sendReaction({{rowId}}, '📢')" class="reaction-button">📢 <span id="project-{{rowId}}-field-📢-reaction-count">{{ 📢 }}</span></button>
-            </h4>
-            <h4>
-              <button onclick="sendReaction({{rowId}}, '🌍')" class="reaction-button">🌍 <span id="project-{{rowId}}-field-🌍-reaction-count">{{ 🌍 }}</span></button>
-            </h4>
-            <h4>
-              <button onclick="sendReaction({{rowId}}, '🦄')" class="reaction-button">🦄 <span id="project-{{rowId}}-field-🦄-reaction-count">{{ 🦄 }}</span></button>
-            </h4>
+
+        <!-- Primary Image -->
+        {{#if [Primary Image] }}
+          {{#if [Primary Image].images}}
+            {{#each [Primary Image].urls}}
+              <div class="image">
+                <!--{{! Edit URL to make hotlinkable }}-->
+                <a href="https://drive.google.com/uc?export=view&id={{this}}">
+                  <img src="https://drive.google.com/uc?export=view&id={{this}}" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." />
+                </a>
+              </div>
+            {{/each}}
+          {{/if}}
+        {{else}}
+          <div class="image">
+            <img src="/images/radio.png" style="width: 500px; max-width: 100%; height: auto" />
           </div>
-      
-        </div>
+        {{/if}}
 
       </div>
     {{/each}}
