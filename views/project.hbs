@@ -55,7 +55,7 @@
 
     <!--{{! Images in a separate list }}-->
     <div class="project-images">
-      <h4>
+      <h4 class="project-media-header">
         Images:
       </h4>
       {{#if projectData.[Images] }}
@@ -78,37 +78,92 @@
     </div>
 
     <!--{{! Audio in a separate list }}-->
+    {{#if projectData.[Audio].audio}}
+      <div class="project-audio">  
+        <h4 class="project-media-header">
+          Audio:
+        </h4>
+        {{#each projectData.[Audio].urls}}
+          <!--{{! Edit URL to make hotlinkable }}-->
+          <a href="https://drive.google.com/uc?export=view&id={{this}}">
+            <audio controls>
+              <source src="https://drive.google.com/uc?export=view&id={{this}}" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </a>
+        {{/each}}
+      </div>
+    {{/if}}
+
+    <!--{{! Slides in a separate list }}-->
+    {{#if projectData.[Slides]}}
     <div class="project-audio">
-      <h4>
-        Audio:
+      <h4 class="project-media-header">
+        Slides:
       </h4>
-        {{#if projectData.[Audio].audio}}
-          {{#each projectData.[Audio].urls}}
+      {{#if projectData.[Slides].slides}}
+        {{#each projectData.[Slides].urls}}
+          <!--{{! Edit URL to make hotlinkable }}-->
+          <a class="project-link button" href="https://drive.google.com/open?id={{this}}" target="_blank">
+            <h4>View Slides</h4>
+          </a>
+        {{/each}}
+      {{/if}}
+    </div>
+    {{/if}}
+
+
+    <!--{{! Videos in a separate list }}-->
+    {{#if projectData.[Video]}}
+      <div class="project-video">
+        <h4 class="project-media-header">
+          Video:
+        </h4>
+        {{#if projectData.[Video].video}}
+          {{#each projectData.[Video].urls}}
             <!--{{! Edit URL to make hotlinkable }}-->
             <a href="https://drive.google.com/uc?export=view&id={{this}}">
-              <audio controls>
-                <source src="https://drive.google.com/uc?export=view&id={{this}}" type="audio/mpeg">
-                Your browser does not support the audio element.
-              </audio>
+              <video width="320" height="240" controls>
+                <source src="https://drive.google.com/uc?export=view&id={{this}}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </a>
+            <br/>
+            <!--{{! Edit URL to make hotlinkable }}-->
+            <a class="project-link button" href="https://drive.google.com/open?id={{this}}" target="_blank">
+              <h4>Open Video in a new tab</h4>
             </a>
           {{/each}}
         {{/if}}
+      </div>
+    {{/if}}
+
+    <!--{{! Links in a separate list }}-->
+    {{#if projectData.[Links]}}
+    <div class="project-audio">
+      <h4 class="project-media-header">
+        Links:
+      </h4>
+      {{#each projectData.[Links] }}
+        <!--{{! Edit URL to make hotlinkable }}-->
+          <a class="project-link button" href="{{this.url}}" target="_blank">
+            <h4>{{ this.original }}</h4>
+          </a>
+      {{/each}}
     </div>
+    {{/if}}
 
   </div>
 
 
+  <!-- Judge and public responses -->
+  <div id="response-section">
 
-  <hr/>
-  <hr/>
 
-  <ul>
-    {{#each  projectData}}
-      <li>{{ @key }}</li>
-      <li>{{ this }}</li>
-      <li></li>
-    {{/each}}
-  </ul>
+
+  </div>
+
+ 
 
 
 

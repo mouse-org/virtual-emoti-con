@@ -110,6 +110,11 @@ a {
   background-color: #ffdae7;
 }
 
+a.project-link {
+  text-decoration: underline;
+  color: #4F4F4F;
+}
+
 .project-images {
   width: 100%;
 }
