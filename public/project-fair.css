@@ -134,6 +134,18 @@ a.project-link {
   display: inline-block
 }
 
+
+
+/* Response Section */
+
+#response-section {
+  background-color: #98DDF9;
+  padding: 1em 10px;
+  margin: 2em 0;
+}
+
+
+
 .judge-feedback-item, .public-feedback-item {
   border: 1px solid #4F4F4F;
   margin: 5px;
