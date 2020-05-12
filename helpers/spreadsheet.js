@@ -9,6 +9,7 @@ module.exports = async function getSpreadsheetData(doc, sheetIndex = 0, offset =
 
     // Load doc, sheet and sheet headers
     await doc.loadInfo();
+
     const sheet = doc.sheetsByIndex[sheetIndex];
     
     if (appendable) {

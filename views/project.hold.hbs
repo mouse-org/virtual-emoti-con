@@ -1,0 +1,206 @@
+<!--{{! Title from Sheet tab }}-->
+  <h2>
+    <a href="/projects">{{ title }}</a>
+  </h2>
+  
+  <!--{{! Insert any static HTML }}-->
+  <div id="static-html">
+    {{{ data.currentWorksheet.staticHTML }}}
+  </div>
+  
+  <!--{{! Iterate through sheet rows }}-->
+  {{#each projectData.rows }}
+    <div class="project">
+      
+      {{#if this/[Project Name] }}
+      {{#if this.rowId }}
+      <h3>
+        <a href="/projects/{{this.rowId}}">{{ this/[Project Name] }}</a>
+      </h3>
+      <div class="hidden" id="project-id">
+        {{this.rowId}}
+      </div>
+      {{/if}}
+      {{/if}}
+      <!--{{! Non-images are copied directly }}-->
+      <ul class="project-fields">
+        <li><strong>Index:</strong> {{@index}}</li>
+        {{#each this}}
+          {{#unless this.image}}
+            <li>
+              <strong>{{@key}}:</strong><span id="project-{{../rowId}}-field-{{@key}}-reaction-count">{{this}}</span>
+            </li>
+          {{/unless}}
+        {{/each}}
+      </ul>
+
+      <div class="reactions-container">
+          
+        <div class="reaction">
+          <h4>
+            <button onclick="sendReaction({{rowId}}, '📢')" class="reaction-button">📢 <span id="project-{{rowId}}-field-📢-reaction-count">{{ 📢 }}</span></button>
+          </h4>
+          <h4>
+            <button onclick="sendReaction({{rowId}}, '🌍')" class="reaction-button">🌍 <span id="project-{{rowId}}-field-🌍-reaction-count">{{ 🌍 }}</span></button>
+          </h4>
+          <h4>
+            <button onclick="sendReaction({{rowId}}, '🦄')" class="reaction-button">🦄 <span id="project-{{rowId}}-field-🦄-reaction-count">{{ 🦄 }}</span></button>
+          </h4>
+        </div>
+    
+      </div>
+      
+      <!--{{! Images in a separate list }}-->
+      <div class="images">
+        <h4>
+          Images:
+        </h4>
+        {{#each this}}
+          {{#if this.images}}
+            {{#each this.urls}}
+              <div class="image">
+                <!--{{! Edit URL to make hotlinkable }}-->
+                <a href="https://drive.google.com/uc?export=view&id={{this}}">
+                  <img src="https://drive.google.com/uc?export=view&id={{this}}" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." />
+                </a>
+              </div>
+            {{/each}}
+          {{/if}}
+        {{/each}}
+      </div>
+      
+      <!--{{! Videos in a separate list }}-->
+      <div class="images">
+        <h4>
+          Videos:
+        </h4>
+        {{#each this}}
+          {{#if this.video}}
+            {{#each this.urls}}
+              <div class="image">
+                <!--{{! Edit URL to make hotlinkable }}-->
+                <a href="https://drive.google.com/uc?export=view&id={{this}}">
+                  <video width="320" height="240" controls>
+                    <source src="https://drive.google.com/uc?export=view&id={{this}}" type="video/mp4">
+                    Your browser does not support the video tag.
+                  </video>
+                </a>
+              </div>
+            {{/each}}
+          {{/if}}
+        {{/each}}
+      </div>
+      
+      <!--{{! Audio in a separate list }}-->
+      <div class="images">
+        <h4>
+          Audio:
+        </h4>
+        {{#each this}}
+          {{#if this.audio}}
+            {{#each this.urls}}
+              <div class="image">
+                <!--{{! Edit URL to make hotlinkable }}-->
+                <a href="https://drive.google.com/uc?export=view&id={{this}}">
+                  <audio controls>
+                    <source src="https://drive.google.com/uc?export=view&id={{this}}" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                  </audio>
+                </a>
+              </div>
+            {{/each}}
+          {{/if}}
+        {{/each}}
+      </div>
+      
+      <hr>
+      
+      
+      <!--{{! Buttons for incrementing reactions }}-->
+      <div class="reaction-buttons">
+        <ul>
+          {{#each ../reactions}}
+          <li>
+            <button onclick="sendReaction({{../this.rowId}}, '{{this}}')">
+              {{this}}
+            </button>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+      
+      <hr/>
+      
+      <!--{{! Judge feedback }}-->
+      <div class="judge-feedback">
+        <h4>
+          Judge Feedback:
+        </h4>
+        <ul>
+          {{#each ../responsesData.rows}}
+            {{#if judge }}
+            <li class="judge-feedback-item">
+              <p>
+                <strong>Judge Feedback Id:</strong>  {{ feedbackId }}
+              </p>
+              <p>
+                <strong>Project Id:</strong> {{ projectId }}
+              </p>
+              <p>
+                <strong>Feedback:</strong> {{ feedback }}
+              </p>
+              <p>
+                <strong>Author:</strong> {{ author }}
+              </p>
+            </li>
+            {{/if }}
+          {{/each}}
+        </ul>
+      </div>
+      
+      <hr/>
+      
+      <!--{{! Public feedback }}-->
+      <div class="public-feedback">
+        <h4>
+          Public Feedback:
+        </h4>
+        
+        <ul>
+          {{#each ../responsesData.rows}}
+            {{#unless judge }}
+            <li class="public-feedback-item">
+              <p>
+                <strong>Public Feedback Id:</strong>  {{ feedbackId }}
+              </p>
+              <p>
+                <strong>Project Id:</strong> {{ projectId }}
+              </p>
+              <p>
+                <strong>Feedback:</strong> {{ feedback }}
+              </p>
+              <p>
+                <strong>Author:</strong> {{ author }}
+              </p>
+            </li>
+            {{/unless }}
+          {{/each}}
+        </ul>
+        
+        <h5>
+          Add feedback:
+        </h5>
+
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfNpjQfmNWAtiotPu1hC7BQki99gOmclUbNynRhrpe-hlvS7w/viewform?embedded=true" width="640" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        
+        
+        
+      </div>
+      
+
+    </div>
+  
+
+
+    <hr>
+  {{/each}}

@@ -26,7 +26,7 @@ router.get("/", async function(req, res) {
 
 router.get("/:projectId", async function(req, res) {
   const projectSheetIndex = 0;
-  const projectResponsesSheetIndex = 1;
+  //const projectResponsesSheetIndex = 1;
   const rowIndex = parseInt(req.params.projectId) - 2;
   
   try {
@@ -37,6 +37,7 @@ router.get("/:projectId", async function(req, res) {
       throw "Unable to access project." 
     }
     
+    /*
     // Get judging data for specified project
     const projectResponsesSheetData = await getSpreadsheetData(doc, projectResponsesSheetIndex);
     
@@ -62,11 +63,12 @@ router.get("/:projectId", async function(req, res) {
         return projectData;
       }
     });
+    */
     
     const combinedData = {
       docTitle: projectSheetData.docTitle,
-      projectData: projectSheetData,
-      responsesData: projectResponsesSheetData
+      projectData: projectSheetData.rows[0],
+      //responsesData: projectResponsesSheetData
     }
     
     const renderData = Object.assign({}, templateData, combinedData);

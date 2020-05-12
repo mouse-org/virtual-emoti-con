@@ -110,23 +110,23 @@ a {
   background-color: #ffdae7;
 }
 
-.images {
-  flex: 1 1 auto;
-  width: 50%;
+.project-images {
+  width: 100%;
 }
 
-.image {
-  flex: 1 1 auto;
+.project-image {
   width: 100%;
-  max-width: 300px;
+  max-width: 280px;
+  vertical-align: top;
   display: inline-block;
-  padding-left: 10px;
+  padding: 5px;
   height: auto;
 }
 
-.image img {
+.project-image img {
   width: 100%;
   height: auto;
+  display: inline-block
 }
 
 .judge-feedback-item, .public-feedback-item {
@@ -149,4 +149,26 @@ a {
   font-size: 20px;
   line-height: 20px;
   padding: 5px;
+}
+
+
+/* Project Content */
+
+#project-content {
+  max-width: 600px;
+  margin: 1em auto;
+  padding: 0 10px;
+}
+
+
+#project-content-header {
+  text-align: center;
+}
+
+#project-content h2 {
+  font-size: 2em;
+}
+
+#project-content p {
+  line-height: 140%;
 }
