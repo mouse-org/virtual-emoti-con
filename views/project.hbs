@@ -50,15 +50,17 @@
       {{ projectData.[Project Description] }}
     </p>
   </div>
+
+
   <div id="project-media">
     <h3>Project Media:</h3>
 
     <!--{{! Images in a separate list }}-->
-    <div class="project-images">
+    {{#if projectData.[Images] }}
+      <div class="project-images project-media-section">
       <h4 class="project-media-header">
         Images:
       </h4>
-      {{#if projectData.[Images] }}
         {{#if projectData.[Images].images }}
           <!--
             projectData.[Images] is an object with 2 properties:
@@ -74,12 +76,12 @@
             </div>
           {{/each}}
         {{/if}}
-      {{/if}}
-    </div>
+      </div>
+    {{/if}}
 
     <!--{{! Audio in a separate list }}-->
     {{#if projectData.[Audio].audio}}
-      <div class="project-audio">  
+      <div class="project-audio project-media-section">  
         <h4 class="project-media-header">
           Audio:
         </h4>
@@ -97,7 +99,7 @@
 
     <!--{{! Slides in a separate list }}-->
     {{#if projectData.[Slides]}}
-    <div class="project-audio">
+    <div class="project-slides project-media-section">
       <h4 class="project-media-header">
         Slides:
       </h4>
@@ -115,7 +117,7 @@
 
     <!--{{! Videos in a separate list }}-->
     {{#if projectData.[Video]}}
-      <div class="project-video">
+      <div class="project-video project-media-section">
         <h4 class="project-media-header">
           Video:
         </h4>
@@ -140,7 +142,7 @@
 
     <!--{{! Links in a separate list }}-->
     {{#if projectData.[Links]}}
-    <div class="project-audio">
+    <div class="project-links project-media-section">
       <h4 class="project-media-header">
         Links:
       </h4>
@@ -159,16 +161,36 @@
   <!-- Judge and public responses -->
   <div id="response-section">
     <h2 class="project-section-header">Project Responses:</h2>
-    <a href="#feedback-form">Add your own Feedback below!</a>
-
     
+
+    {{#if responsesData.rows.length }}
+    <a href="#feedback-form">Add your own Feedback below!</a>
+    <h3>Responses:</h3>
+    <ul id="response-list">
+      {{#each responsesData.judgeResponses }}
+        <li class="project-response judge-feedback">
+          <h4>{{ this.[Judge Name] }} — <em>Emoti-Con Judge</em></h4>
+          <p>{{ this.[Judge Feedback] }}</p>
+        </li>
+      {{/each}}
+      {{#each responsesData.publicResponses }}
+        <li class="project-response public-feedback">
+          <h4>{{ this.[First Name] }}, {{ this.[City] }}{{#if this.[Location] }}, {{ this.[Location] }}{{/if}}</h4>
+          <p>{{ this.[Public Feedback] }}</p>
+        </li>
+      {{/each}}
+    </ul>
+    {{/if}}
 
 
     <h3 id="feedback-form">
       Add feedback:
     </h3>
 
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfNpjQfmNWAtiotPu1hC7BQki99gOmclUbNynRhrpe-hlvS7w/viewform?embedded=true&usp=pp_url&entry.1593337430={{ projectData.rowId }}" width="550" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    <h4>Project Id: {{ projectData.rowId }}, Project Name: {{ projectData.[Project Name] }}</h4>
+    <div class="google-form-container">
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfNpjQfmNWAtiotPu1hC7BQki99gOmclUbNynRhrpe-hlvS7w/viewform?embedded=true&usp=pp_url&entry.1593337430={{ projectData.rowId }}" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    </div>
 
     <!--https://docs.google.com/forms/d/e/1FAIpQLSfNpjQfmNWAtiotPu1hC7BQki99gOmclUbNynRhrpe-hlvS7w/viewform?usp=pp_url&entry.1593337430=9-->
 
