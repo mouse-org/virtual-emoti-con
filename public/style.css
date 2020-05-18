@@ -2,7 +2,6 @@
   box-shadow: -5px 5px #CFCFCF;
   border: 1px solid #CFCFCF;
   display: inline-block;
-  padding: 5px 10px;
   margin: 10px;
   background-color: #FFDAE7;
 }
@@ -11,6 +10,7 @@
   text-decoration: none;
   color: black;
   display: inline-block;
+  margin: 5px 10px;
 }
 
 .button:hover {
@@ -35,4 +35,8 @@
 
 .button h2, h4 {
   margin: 7px 3px;
+}
+
+.active-page-nav-button {
+  background-color: #ffc9e7;
 }

@@ -10,12 +10,20 @@ module.exports = function(hbs) {
     }
   });
 
-  hbs.registerHelper('projectCategory', function(fullProjectCategory) {
+  hbs.registerHelper("projectCategory", function(fullProjectCategory) {
     // Examples:
     // "Activism & Social Change - Technology-infused social action projects"
     // "Computational Media - interactive visual arts, animation, data visualization"
     return fullProjectCategory.split(" - ")[0];
   });
+
+  hbs.registerHelper("roleAndOrg", function(role, org) {
+    if (role && org) {
+      return `, ${role} at ${org}`
+    } else {
+      return " "
+    }
+  })
 
   return hbs;
 }

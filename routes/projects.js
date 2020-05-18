@@ -8,9 +8,11 @@ const doc = new GoogleSpreadsheet(process.env.SPREADSHEET_ID);
 
 const getSpreadsheetData = require("../helpers/spreadsheet");
 
+const reactions = require("../helpers/reactions");
+
 const templateData = {
   favicon: FAVICON_URL,
-  reactions: ["📢", "🌍", "🦄"]
+  reactions: reactions
 }
 
 const errorText = "Sorry, you discovered an error! Email help@mouse.org if you continue seeing this error.";
@@ -20,7 +22,7 @@ router.get("/", async function(req, res) {
   if (sheetData && sheetData.rows) {
     const renderData = Object.assign({}, templateData, sheetData);
 
-    res.render("index", renderData);
+    res.render("projectsIndex", renderData);
   } else {
     res.send("error");
   }

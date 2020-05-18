@@ -20,29 +20,26 @@ a {
   text-decoration: none;
 }
 
+.light-header {
+  font-weight: normal;
+}
+
 #header, #content h2 {
   text-align: center; 
 }
 
-#menu {
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-
-#menu li {
-  display: inline-block;
-  margin: 0 1em;
-}
-
-#header-logo-container {
+#projects-header-logo-container {
   text-align: center;
   width: 100%;
 }
 
-#header-logo-container img {
-  width: 300px;
+#projects-header-logo-container img {
+  width: 200px;
   margin: 0 auto;
+}
+
+#nav-section {
+  text-align: center;
 }
 
 #index-projects-container {
@@ -62,6 +59,11 @@ a {
   padding: 10px;
   margin: 1em 10px;
   border-radius: 10px;
+}
+
+.index-project:hover, .index-project:active {
+  border: 2px solid #FFADCA;
+  background-color: #FFFAFB;
 }
 
 .project-name {
@@ -173,7 +175,27 @@ a.project-link {
   border-radius: 3px;
 }
 
-#response-list {
+#response-section a.button {
+  background-color: #4155C8;
+  box-shadow: -5px 5px #DFDFDF;
+  border: 1px solid #DFDFDF;
+  padding: 5px 10px;
+  color: #DFDFDF;
+}
+
+#response-section a.button:hover {
+  box-shadow: -5px 5px #FFFFFF;
+  border: 1px solid #FFFFFF;
+  background-color: #5D6ED0;
+  color: #FFFFFF
+}
+
+#response-section a.button:active {
+  box-shadow: -2px 2px #FFFFFF;
+  background-color: #7180D6;
+}
+
+.response-list {
   list-style-type: none;
   padding: .5em 5px;
 }
@@ -205,6 +227,12 @@ a.project-link {
 .google-form-container iframe {
   height: 100%;
   width: 100%;
+}
+
+a.new-tab-form-link {
+  text-decoration: underline;
+  padding: 3px 0;
+  display: inline-block;
 }
 
 
