@@ -43,15 +43,20 @@ a {
 }
 
 #index-projects-container {
+  text-align: center;
+  /*
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  */
 }
 
+/*
 #index-projects-container::after {
   content: "";
   flex: auto;
 }
+*/
 
 .index-project {
   width: 310px;
@@ -59,6 +64,8 @@ a {
   padding: 10px;
   margin: 1em 10px;
   border-radius: 10px;
+  display: inline-block;
+  vertical-align: top;
 }
 
 .index-project:hover, .index-project:active {
