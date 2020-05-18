@@ -40,3 +40,17 @@
 .active-page-nav-button {
   background-color: #ffc9e7;
 }
+
+#terms-container {
+  margin-top: 4em;
+  font-family: 'Signika', sans-serif;
+  text-align: center;
+}
+
+#terms-container a {
+  color: #3F3F3F;
+}
+
+#terms-container a:hover {
+  text-decoration: underline;
+}

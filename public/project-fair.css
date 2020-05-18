@@ -42,6 +42,31 @@ a {
   text-align: center;
 }
 
+#keynote {
+  text-align: center;
+  border: 3px solid #4cc7f8;
+  padding: 1em;
+  border-radius: 5px;
+  margin: 2em auto 3em;
+  max-width: 600px;
+}
+
+#keynote h2 {
+  margin: 0;
+}
+
+#keynote p {
+  text-align: left;
+  line-height: 20px;
+}
+
+/*
+#keynote iframe {
+  max-width: 560px;
+  width: 100%;
+}
+*/
+
 #index-projects-container {
   text-align: center;
   /*
@@ -122,6 +147,10 @@ a {
 a.project-link {
   text-decoration: underline;
   color: #4F4F4F;
+}
+
+.primary-image {
+  text-align: center;
 }
 
 .project-images {

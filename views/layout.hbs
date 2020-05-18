@@ -43,31 +43,15 @@
     
   </head>
   <body>
-    <!--
-    <h1 id="header">
-      {{ docTitle }}
-    </h1>
-    
-    <ul id="menu">
-      {{#each data.worksheets }}
-        {{#unless this.only}}
-          <li>
-            <h3>
-              {{#if this.current }}
-                {{ this.title }}
-              {{else}}
-                <a href="{{ this.title }}">
-                  {{ this.title }}
-                </a>
-              {{/if}}
-            </h3>
-          </li>
-        {{/unless}}
-      {{/each}}
-    </ul>
-    -->
     
     {{{ body }}}
+
+    <div id="terms-container">
+      <hr/>
+      <p>
+        <a href="https://docs.google.com/document/d/1T5HQSGVoCvWkKr-AW4h9cPus2YOyxWL5lD2l-EyCoPA/edit" target="blank">Emoti-Con Terms of Use and Privacy Policy</a>
+      </p>
+    </div>
   </body>
   <script src="/script.js"></script>
 </html>
