@@ -99,29 +99,6 @@ img {
   }
 }
 
-/* Color */
-
-.lb-bg {
-  background-color: #4cc7f8;
-  color: white;
-}
-
-.lg-bg {
-  background-color: #4cf8b6;
-}
-
-.pink-bg {
-  background-color: #ffdae7;
-}
-
-.pink-text {
-  color: #ff00ff;
-}
-
-.black-text {
-  color: black;
-}
-
 
 
 /* Images */
@@ -195,22 +172,6 @@ img {
     font-size: 25px;
     line-height: 28px;
   }
-}
-
-.highlight {
-  display: inline-block;
-  padding: 5px 10px;
-  font-size: 22px;
-  line-height: 28px;
-  max-width: 600px;
-  text-align: justify;
-  margin: 10px 0;
-  border-radius: 1px;
-}
-
-.big-highlight {
-  font-size: 28px;
-  line-height: 32px;
 }
 
 li.close-list {
