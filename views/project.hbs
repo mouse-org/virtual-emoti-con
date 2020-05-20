@@ -1,199 +1,257 @@
-<div id="header-logo-container">
-  <a href="/projects">
+<div id="projects-header-logo-container">
+  <a href="/">
     <img id="header-logo" src="https://cdn.glitch.com/ba2b66d5-8c8f-4c1a-8a93-c0aff3884c8e%2Fimage4.png?v=1586530017858" alt="Emoti-Con logo" />
   </a>
 </div>
 
-
-<div id="content">
-  <!--{{! Title from Sheet tab }}-->
-  <h2>
-    <a href="/projects">{{ title }}</a>
-  </h2>
-  
-  <!--{{! Insert any static HTML }}-->
-  <div id="static-html">
-    {{{ data.currentWorksheet.staticHTML }}}
+<div id="nav-section" class="section">
+  <div class="centered-button-container">
+    <div class="button"><a href="/"><h2>Project Fair</h2></a></div>
+    <div class="button"><a href="/about"><h2>About Virtual Emoti-Con</h2></a></div>
   </div>
-  
-  <!--{{! Iterate through sheet rows }}-->
-  {{#each projectData.rows }}
-    <div class="project">
-      
-      {{#if this/[Project Name] }}
-      {{#if this.rowId }}
-      <h3>
-        <a href="/projects/{{this.rowId}}">{{ this/[Project Name] }}</a>
-      </h3>
-      <div class="hidden" id="project-id">
-        {{this.rowId}}
-      </div>
-      {{/if}}
-      {{/if}}
-      <!--{{! Non-images are copied directly }}-->
-      <ul class="project-fields">
-        <li><strong>Index:</strong> {{@index}}</li>
-        {{#each this}}
-          {{#unless this.image}}
-            <li>
-              <strong>{{@key}}:</strong><span id="project-{{../rowId}}-field-{{@key}}-reaction-count">{{this}}</span>
-            </li>
-          {{/unless}}
-        {{/each}}
-      </ul>
-      
-      <!--{{! Images in a separate list }}-->
-      <div class="images">
-        <h4>
-          Images:
-        </h4>
-        {{#each this}}
-          {{#if this.images}}
-            {{#each this.urls}}
-              <div class="image">
-                <!--{{! Edit URL to make hotlinkable }}-->
-                <a href="https://drive.google.com/uc?export=view&id={{this}}">
-                  <img src="https://drive.google.com/uc?export=view&id={{this}}" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." />
-                </a>
-              </div>
-            {{/each}}
-          {{/if}}
-        {{/each}}
-      </div>
-      
-      <!--{{! Videos in a separate list }}-->
-      <div class="images">
-        <h4>
-          Videos:
-        </h4>
-        {{#each this}}
-          {{#if this.video}}
-            {{#each this.urls}}
-              <div class="image">
-                <!--{{! Edit URL to make hotlinkable }}-->
-                <a href="https://drive.google.com/uc?export=view&id={{this}}">
-                  <video width="320" height="240" controls>
-                    <source src="https://drive.google.com/uc?export=view&id={{this}}" type="video/mp4">
-                    Your browser does not support the video tag.
-                  </video>
-                </a>
-              </div>
-            {{/each}}
-          {{/if}}
-        {{/each}}
-      </div>
-      
-      <!--{{! Audio in a separate list }}-->
-      <div class="images">
-        <h4>
-          Audio:
-        </h4>
-        {{#each this}}
-          {{#if this.audio}}
-            {{#each this.urls}}
-              <div class="image">
-                <!--{{! Edit URL to make hotlinkable }}-->
-                <a href="https://drive.google.com/uc?export=view&id={{this}}">
-                  <audio controls>
-                    <source src="https://drive.google.com/uc?export=view&id={{this}}" type="audio/mpeg">
-                    Your browser does not support the audio element.
-                  </audio>
-                </a>
-              </div>
-            {{/each}}
-          {{/if}}
-        {{/each}}
-      </div>
-      
-      <hr>
-      
-      
-      <!--{{! Buttons for incrementing reactions }}-->
-      <div class="reaction-buttons">
-        <ul>
-          {{#each ../reactions}}
-          <li>
-            <button onclick="sendReaction({{../this.rowId}}, '{{this}}')">
-              {{this}}
-            </button>
-          </li>
-          {{/each}}
-        </ul>
-      </div>
-      
-      <hr/>
-      
-      <!--{{! Judge feedback }}-->
-      <div class="judge-feedback">
-        <h4>
-          Judge Feedback:
-        </h4>
-        <ul>
-          {{#each ../responsesData.rows}}
-            {{#if judge }}
-            <li class="judge-feedback-item">
-              <p>
-                <strong>Judge Feedback Id:</strong>  {{ feedbackId }}
-              </p>
-              <p>
-                <strong>Project Id:</strong> {{ projectId }}
-              </p>
-              <p>
-                <strong>Feedback:</strong> {{ feedback }}
-              </p>
-              <p>
-                <strong>Author:</strong> {{ author }}
-              </p>
-            </li>
-            {{/if }}
-          {{/each}}
-        </ul>
-      </div>
-      
-      <hr/>
-      
-      <!--{{! Public feedback }}-->
-      <div class="public-feedback">
-        <h4>
-          Public Feedback:
-        </h4>
-        
-        <ul>
-          {{#each ../responsesData.rows}}
-            {{#unless judge }}
-            <li class="public-feedback-item">
-              <p>
-                <strong>Public Feedback Id:</strong>  {{ feedbackId }}
-              </p>
-              <p>
-                <strong>Project Id:</strong> {{ projectId }}
-              </p>
-              <p>
-                <strong>Feedback:</strong> {{ feedback }}
-              </p>
-              <p>
-                <strong>Author:</strong> {{ author }}
-              </p>
-            </li>
-            {{/unless }}
-          {{/each}}
-        </ul>
-        
-        <h5>
-          Add feedback:
-        </h5>
+</div>
 
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfNpjQfmNWAtiotPu1hC7BQki99gOmclUbNynRhrpe-hlvS7w/viewform?embedded=true" width="640" height="800" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-        
-        
-        
-      </div>
+
+<div id="project-content">
+
+  <div id="project-content-header">
+    <!-- Project Name Header -->
+    {{#if projectData.[Project Name] }}
+    {{#if projectData.rowId }}
+    <h2 class="project-name">
+      <a href="/projects/{{projectData.rowId}}">“{{ projectData.[Project Name] }}”</a>
+    </h2>
+    {{/if}}
+    {{/if}}
+
+    <div id="project-details-box">
+      <!-- Type of project -->
+      {{#if projectData.[Project Category] }}
+      <h3 class="project-header">
+        {{ projectCategory projectData.[Project Category] }}
+      </h3>
+      {{/if}}
+
+      <!-- Student names or count -->
+
+      {{#if projectData.[Student Count] }}
+        <h3 class="project-header">
+            By {{ projectData.[Student Names] }}
+        </h3>
+      {{/if }}
+
       
+      
+      <!-- School or Program Header -->
+      {{#if projectData.[Organization or Program Affiliation] }}
+      <h3 class="project-header">
+        {{#if projectData.[Age Range]}}{{projectData.[Age Range]}} Students from {{else}}Students from {{/if}}<strong>{{ projectData.[Organization or Program Affiliation] }}</strong>
+      </h3>
+      {{/if}}
 
     </div>
+
+  </div>
+
+  <div id="project-info">
+
+    {{#if projectData.[Primary Image] }}
+      {{#if projectData.[Primary Image].images}}
+        {{#each projectData.[Primary Image].urls}}
+          <div class="primary-image">
+            <!--{{! Edit URL to make hotlinkable }}-->
+              <img src="https://drive.google.com/uc?export=view&id={{this}}" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." />
+          </div>
+        {{/each}}
+      {{/if}}
+    {{/if}}
+
+    <div class="project-section-header-container">
+      <h3 class="lg-bg highlight">About this project:</h3>
+    </div>
+    <p>
+      {{ breaklines projectData.[Project Description] }}
+    </p>
+  </div>
+
+
+  <div id="project-media">
+    <div class="project-section-header-container">
+      <h3 class="lg-bg highlight">Project Media:</h3>
+    </div>
+
+    <!--{{! Images in a separate list }}-->
+    {{#if projectData.[Images] }}
+      <div class="project-images project-media-section">
+      <h4 class="project-media-header">
+        Images:
+      </h4>
+        {{#if projectData.[Images].images }}
+          <!--
+            projectData.[Images] is an object with 2 properties:
+            'images' which is true and 'urls' which contains an array of
+            the image urls
+          -->
+          {{#each projectData.[Images].urls }}
+            <div class="project-image">
+              <!--{{! Edit URL to make hotlinkable }}-->
+              <a href="https://drive.google.com/uc?export=view&id={{ this }}">
+                <img src="https://drive.google.com/uc?export=view&id={{ this }}" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." />
+              </a>
+            </div>
+          {{/each}}
+        {{/if}}
+      </div>
+    {{/if}}
+
+    <!--{{! Audio in a separate list }}-->
+    {{#if projectData.[Audio].audio}}
+      <div class="project-audio project-media-section">  
+        <h4 class="project-media-header">
+          Audio:
+        </h4>
+        {{#each projectData.[Audio].urls}}
+          <!--{{! Edit URL to make hotlinkable }}-->
+          <a href="https://drive.google.com/uc?export=view&id={{this}}">
+            <audio controls>
+              <source src="https://drive.google.com/uc?export=view&id={{this}}" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </a>
+        {{/each}}
+      </div>
+    {{/if}}
+
+    <!--{{! Slides in a separate list }}-->
+    {{#if projectData.[Slides]}}
+    <div class="project-slides project-media-section">
+      <h4 class="project-media-header">
+        Slides:
+      </h4>
+      {{#if projectData.[Slides].slides}}
+        {{#each projectData.[Slides].urls}}
+          <!--{{! Edit URL to make hotlinkable }}-->
+          <a class="project-link button" href="https://drive.google.com/open?id={{this}}" target="_blank">
+            <h4>View Slides</h4>
+          </a>
+        {{/each}}
+      {{/if}}
+    </div>
+    {{/if}}
+
+
+    <!--{{! Videos in a separate list }}-->
+    {{#if projectData.[Video]}}
+      <div class="project-video project-media-section">
+        <h4 class="project-media-header">
+          Video:
+        </h4>
+        {{#if projectData.[Video].video}}
+          {{#each projectData.[Video].urls}}
+            <!--{{! Edit URL to make hotlinkable }}-->
+            <a href="https://drive.google.com/uc?export=view&id={{this}}">
+              <video width="320" height="240" controls>
+                <source src="https://drive.google.com/uc?export=view&id={{this}}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </a>
+            <br/>
+            <!--{{! Edit URL to make hotlinkable }}-->
+            <a class="project-link button" href="https://drive.google.com/open?id={{this}}" target="_blank">
+              <h4>Open Video in a new tab</h4>
+            </a>
+          {{/each}}
+        {{/if}}
+      </div>
+    {{/if}}
+
+    <!--{{! Links in a separate list }}-->
+    {{#if projectData.[Links]}}
+    <div class="project-links project-media-section">
+      <h4 class="project-media-header">
+        Links:
+      </h4>
+      {{#each projectData.[Links] }}
+        <!--{{! Edit URL to make hotlinkable }}-->
+          <a class="project-link button" href="{{this.url}}" target="_blank">
+            <h4>{{ this.original }}</h4>
+          </a>
+      {{/each}}
+    </div>
+    {{/if}}
+
+  </div>
+
+  {{#if projectData.[More About Our Project]}}
+  <div class="project-section-header-container">
+    <div id="project-more-info">
+      <h3 class="lg-bg highlight">More about this project:</h3>
+      <p>{{ breaklines projectData.[More About Our Project] }}</p>
+    </div>
+  </div>
+  {{/if}}
+
+
+  <!-- Judge and public responses -->
+  <div id="response-section">
+    <h2 class="project-section-header">Community Feedback:</h2>
+
+    <div class="reactions-container">
+          
+      <div class="reaction">
+        {{#each reactions}}
+          <h4>
+            <button onclick="sendReaction({{ ../projectData.rowId }}, '{{ this.name }}')" class="reaction-button">
+              {{ this.emoji }}
+              <span id="project-{{../projectData.rowId}}-field-{{ this.name }}-reaction-count">
+                {{#if (lookup ../projectData this.name)}}
+                  {{ lookup ../projectData this.name }}
+                {{else }}
+                  0
+                {{/if}}
+              </span>
+            </button>
+          </h4>
+        {{/each}}
+      </div>
   
+    </div>
 
+    <a href="#feedback-form" class="button">Share your Feedback</a>
 
-    <hr>
-  {{/each}}
+    <a href="https://emoti-con.org/" target="_blank" class="button">Learn more about the judges at Emoti-Con.org</a>
+
+    {{#if responsesData.rows.length }}
+    
+    <h3>Feedback from the Judges:</h3>
+
+    <ul class="response-list">
+      {{#each responsesData.judgeResponses }}
+        <li class="project-response judge-feedback">
+          <h4 class="light-header"><strong>{{ this.[Judge Name] }}</strong>{{ roleAndOrg this.[Role] this.[Organization] }} — <em>Emoti-Con Judge</em></h4>
+          <p>{{ this.[Judge Feedback] }}</p>
+        </li>
+      {{/each}}
+    </ul>
+    <h3>Feedback from the Community:</h3>
+    <ul class="response-list">
+      {{#each responsesData.publicResponses }}
+        <li class="project-response public-feedback">
+          <h4 class="light-header"><strong>{{ this.[First Name] }}</strong>, {{ this.[City] }}{{#if this.[Location] }}, {{ this.[Location] }}{{/if}}</h4>
+          <p>{{ this.[Public Feedback] }}</p>
+        </li>
+      {{/each}}
+    </ul>
+    {{/if}}
+
+    <h4 id="feedback-form">Project Id: {{ projectData.rowId }}<br/>Project Name: {{ projectData.[Project Name] }}</h4>
+    <a class="new-tab-form-link" href="https://docs.google.com/forms/d/e/1FAIpQLSfNpjQfmNWAtiotPu1hC7BQki99gOmclUbNynRhrpe-hlvS7w/viewform?usp=pp_url&entry.1593337430={{ projectData.rowId }}" target="_blank">Click here to open this form in a new tab</a>
+    <div class="google-form-container">
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfNpjQfmNWAtiotPu1hC7BQki99gOmclUbNynRhrpe-hlvS7w/viewform?embedded=true&usp=pp_url&entry.1593337430={{ projectData.rowId }}" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    </div>
+
+    <!--https://docs.google.com/forms/d/e/1FAIpQLSfNpjQfmNWAtiotPu1hC7BQki99gOmclUbNynRhrpe-hlvS7w/viewform?usp=pp_url&entry.1593337430=9-->
+
+  </div>
+  
 </div>

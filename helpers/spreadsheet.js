@@ -9,6 +9,7 @@ module.exports = async function getSpreadsheetData(doc, sheetIndex = 0, offset =
 
     // Load doc, sheet and sheet headers
     await doc.loadInfo();
+
     const sheet = doc.sheetsByIndex[sheetIndex];
     
     if (appendable) {
@@ -42,6 +43,7 @@ module.exports = async function getSpreadsheetData(doc, sheetIndex = 0, offset =
     const headers = sheet.headerValues;
     sheetData.rows =  await parseSpreadsheetData(rows, headers);
     sheetData.rows = sheetData.rows.filter(i => i["Reviewed"] === "Yes" ? i : null)
+    //sheetData.row.sort((a,b) => (a["Project Name"]))
     
     // Return flat JSON for read only
     return sheetData
@@ -91,7 +93,10 @@ function parseCell(cell, header) {
     } else {
       return cell
     }
-    
+
+  // This is a cell with a list of links  
+  } else if (guessAttachment(header.toLowerCase()) === "links") {
+    return cell.split("\n").join(", ").split(",").map(i => i.trim()).map(i => i.indexOf("http") === 0 ? {url:i, original: i} : {url: "http://" + i, original: i});
   } else {
     return cell;
   }
@@ -126,6 +131,11 @@ function guessAttachment(header) {
     isInHeader("podcast")
   ) {
     return "audio"
+  } else if (
+    isInHeader("links") ||
+    isInHeader("urls")
+  ) {
+    return "links"
   } else {
     return false;
   }

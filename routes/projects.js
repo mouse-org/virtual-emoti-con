@@ -8,17 +8,21 @@ const doc = new GoogleSpreadsheet(process.env.SPREADSHEET_ID);
 
 const getSpreadsheetData = require("../helpers/spreadsheet");
 
+const reactions = require("../helpers/reactions");
+
 const templateData = {
   favicon: FAVICON_URL,
-  reactions: ["📢", "🌍", "🦄"]
+  reactions: reactions
 }
+
+const errorText = "Sorry, you discovered an error! Email help@mouse.org if you continue seeing this error.";
 
 router.get("/", async function(req, res) {
   const sheetData = await getSpreadsheetData(doc);
   if (sheetData && sheetData.rows) {
     const renderData = Object.assign({}, templateData, sheetData);
 
-    res.render("index", renderData);
+    res.render("projectsIndex", renderData);
   } else {
     res.send("error");
   }
@@ -26,52 +30,16 @@ router.get("/", async function(req, res) {
 
 router.get("/:projectId", async function(req, res) {
   const projectSheetIndex = 0;
-  const projectResponsesSheetIndex = 1;
+  const responsesSheetIndex = 1;
   const rowIndex = parseInt(req.params.projectId) - 2;
   
+  // Get data for specified project 
   try {
-    // Get data for specified project
-    const projectSheetData = await getSpreadsheetData(doc, projectSheetIndex, rowIndex, 1);
+    var projectSheetData = await getSpreadsheetData(doc, projectSheetIndex, rowIndex, 1);
 
     if (!projectSheetData || !projectSheetData.rows) {
       throw "Unable to access project." 
     }
-    
-    // Get judging data for specified project
-    const projectResponsesSheetData = await getSpreadsheetData(doc, projectResponsesSheetIndex);
-    
-    projectResponsesSheetData.rows = projectResponsesSheetData.rows.map((i, index) => {
-      const projectId = i["What is the project id of the project you are judging?"];
-      
-      if (projectId === req.params.projectId) {
-        const judge = i["Are you an Emoti-Con judge?"] === "Yes";
-        const projectData = {
-          feedbackId: i.rowId,
-          projectId: projectId,
-          judge: judge
-        }
-        
-        if (judge) {
-          projectData.feedback = i["Public Narrative Feedback"];
-          projectData.author = i["What is your name?"];
-        } else {
-          projectData.feedback = i["What positive feedback do you have for the creators of this project?"];
-          projectData.author = i["What is your first name?"] + ", " + i["What city do you live in?"];
-        }
-        
-        return projectData;
-      }
-    });
-    
-    const combinedData = {
-      docTitle: projectSheetData.docTitle,
-      projectData: projectSheetData,
-      responsesData: projectResponsesSheetData
-    }
-    
-    const renderData = Object.assign({}, templateData, combinedData);
-
-    res.render("project", renderData);
     
   } catch (error) {
     console.log("Error:")
@@ -79,10 +47,61 @@ router.get("/:projectId", async function(req, res) {
     if (error === "This project has not been reviewed.") {
       res.render("error", {error: error});
     } else {
-      res.render("error", {error: "Sorry, you discovered an error!"});
+      res.render("error", {error: errorText});
+    }
+  }
+
+  // Get responses data:
+  try {
+    var responsesSheetData = await getSpreadsheetData(doc, responsesSheetIndex);
+    
+    responsesSheetData.rows = responsesSheetData.rows.filter(i => {
+      return i["Project ID:"] === req.params.projectId;
+    });
+
+    responsesSheetData.judgeResponses = responsesSheetData.rows.filter(i => {
+      return (i["Reviewed"] === "Yes" && i["Judge Response"] === "Yes");
+    });
+
+    responsesSheetData.publicResponses = responsesSheetData.rows.filter(i => {
+      return (i["Reviewed"] === "Yes" && i["Judge Response"] === "No");
+    });
+
+  } catch (error) {
+    console.log("Responses Sheet Error:");
+    console.log(error);
+    responsesSheetData = {}
+  }
+
+  // Combine data and render page:
+  try {
+    // Do not render page if no projectSheetData
+    if (!projectSheetData) {
+      throw "No data for project " + req.params.projectId;
+    }
+
+    // Render page without responses if no responsesSheetData
+    if (!responsesSheetData) {
+      responsesSheetData = {}
+    }
+
+    const combinedData = {
+      docTitle: projectSheetData.docTitle,
+      projectData: projectSheetData.rows[0],
+      responsesData: responsesSheetData
     }
     
+    const renderData = Object.assign({}, templateData, combinedData);
+
+    res.render("project", renderData);
+  } catch (error) {
+    console.log("Error:")
+    console.log(error);
+    res.render("error", {error: errorText});
+
   }
+
+
   
 })
 
