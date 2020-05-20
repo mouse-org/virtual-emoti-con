@@ -27,9 +27,9 @@
     <div id="project-details-box">
       <!-- Type of project -->
       {{#if projectData.[Project Category] }}
-      <h4 class="project-header">
+      <h3 class="project-header">
         {{ projectCategory projectData.[Project Category] }}
-      </h4>
+      </h3>
       {{/if}}
 
       <!-- Student names or count -->
@@ -44,9 +44,9 @@
       
       <!-- School or Program Header -->
       {{#if projectData.[Organization or Program Affiliation] }}
-      <h4 class="project-header">
+      <h3 class="project-header">
         {{#if projectData.[Age Range]}}{{projectData.[Age Range]}} Students from {{else}}Students from {{/if}}<strong>{{ projectData.[Organization or Program Affiliation] }}</strong>
-      </h4>
+      </h3>
       {{/if}}
 
     </div>
