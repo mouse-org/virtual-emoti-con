@@ -419,18 +419,6 @@ li {
   font-size: 28px;
 }
 
-.image-list li {
-  list-style-type: none;
-  display: inline-block;
-  max-width: 100px;
-  padding: 0 10px;
-}
-
-.image-list li img {
-  max-width: 100px;
-  display: inline-block;
-}
-
 .dot-list .highlight {
   text-align: left;
 }
