@@ -25,5 +25,11 @@ module.exports = function(hbs) {
     }
   })
 
+  hbs.registerHelper('breaklines', function(text) {
+    text = hbs.Utils.escapeExpression(text);
+    text = text.replace(/(\r\n|\n|\r)/gm, '<br>');
+    return new hbs.SafeString(text);
+  });
+
   return hbs;
 }

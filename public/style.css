@@ -1,5 +1,5 @@
 body {
-  /*font-family: 'Signika', sans-serif;*/
+  font-family: 'Signika', sans-serif;
 }
 
 .button {
@@ -8,6 +8,7 @@ body {
   display: inline-block;
   margin: 10px;
   background-color: #FFDAE7;
+  padding: 3px;
 }
 
 .button a {

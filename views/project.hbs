@@ -25,29 +25,32 @@
     {{/if}}
     {{/if}}
 
-    <!-- Type of project -->
-    {{#if projectData.[Project Category] }}
-    <h4 class="project-header">
-      {{ projectCategory projectData.[Project Category] }}
-    </h4>
-    {{/if}}
+    <div id="project-details-box">
+      <!-- Type of project -->
+      {{#if projectData.[Project Category] }}
+      <h4 class="project-header">
+        {{ projectCategory projectData.[Project Category] }}
+      </h4>
+      {{/if}}
 
-    <!-- Student names or count -->
+      <!-- Student names or count -->
 
-    {{#if projectData.[Student Count] }}
-      <h3 class="project-header">
-          By {{ projectData.[Student Names] }}
-      </h3>
-    {{/if }}
+      {{#if projectData.[Student Count] }}
+        <h3 class="project-header">
+            By {{ projectData.[Student Names] }}
+        </h3>
+      {{/if }}
 
-    
-    
-    <!-- School or Program Header -->
-    {{#if projectData.[Organization or Program Affiliation] }}
-    <h4 class="project-header">
-      From {{ projectData.[Organization or Program Affiliation] }}
-    </h4>
-    {{/if}}
+      
+      
+      <!-- School or Program Header -->
+      {{#if projectData.[Organization or Program Affiliation] }}
+      <h4 class="project-header">
+        {{#if projectData.[Age Range]}}{{projectData.[Age Range]}} Students from {{else}}Students from {{/if}}<strong>{{ projectData.[Organization or Program Affiliation] }}</strong>
+      </h4>
+      {{/if}}
+
+    </div>
 
   </div>
 
@@ -64,15 +67,19 @@
       {{/if}}
     {{/if}}
 
-    <h3 class="lg-bg highlight">About this project:</h3>
+    <div class="project-section-header-container">
+      <h3 class="lg-bg highlight">About this project:</h3>
+    </div>
     <p>
-      {{ projectData.[Project Description] }}
+      {{ breaklines projectData.[Project Description] }}
     </p>
   </div>
 
 
   <div id="project-media">
-    <h3 class="lg-bg highlight">Project Media:</h3>
+    <div class="project-section-header-container">
+      <h3 class="lg-bg highlight">Project Media:</h3>
+    </div>
 
     <!--{{! Images in a separate list }}-->
     {{#if projectData.[Images] }}
@@ -176,12 +183,14 @@
 
   </div>
 
-  <div id="project-more-info">
-    <h3 class="lg-bg highlight">More about this project:</h3>
-    <p>{{ projectData.[More About Our Project] }}</p>
-
-
+  {{#if projectData.[More About Our Project]}}
+  <div class="project-section-header-container">
+    <div id="project-more-info">
+      <h3 class="lg-bg highlight">More about this project:</h3>
+      <p>{{ breaklines projectData.[More About Our Project] }}</p>
+    </div>
   </div>
+  {{/if}}
 
 
   <!-- Judge and public responses -->

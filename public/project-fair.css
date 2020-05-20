@@ -10,7 +10,6 @@
 }
 
 body {
-  font-family: "Ariel", sans-serif;
   max-width: 900px;
   margin: 0 auto;
   /*
@@ -204,6 +203,27 @@ a.project-link {
 
 #project-content p {
   line-height: 140%;
+}
+
+#project-details-box {
+  border: 3px solid #4cc7f8;
+  padding: 10px;
+  max-width: 400px;
+  margin: 0 auto;
+  border-radius: 3px;
+}
+
+#project-details-box h3 {
+  font-size: 16px;
+}
+
+#project-details-box h4 {
+  font-size: 14px;
+}
+
+.project-section-header-container {
+  text-align: center;
+  width: 100%;
 }
 
 .project-media-section {
