@@ -16,7 +16,7 @@ var projectsRouter = require('./routes/projects')
 
 app.use('/api', apiRouter);
 app.use('/projects', projectsRouter);
-app.use('/', projectsRouter);
+
 
 /*
 app.get("/", function(req, res) {
@@ -31,6 +31,8 @@ app.get("/submit-a-project", function(req, res) {
 app.get("/about", function(req, res) {
   res.render("about", {layout: "announcementLayout"});
 });
+
+app.use('/', projectsRouter);
 
 
 
