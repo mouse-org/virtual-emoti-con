@@ -150,7 +150,7 @@
           {{#each projectData.[Video].urls}}
             <!--{{! Edit URL to make hotlinkable }}-->
             <a href="https://drive.google.com/uc?export=view&id={{this}}">
-              <video width="320" height="240" controls>
+              <video width="427" height="240" controls>
                 <source src="https://drive.google.com/uc?export=view&id={{this}}" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
@@ -228,7 +228,7 @@
     <ul class="response-list">
       {{#each responsesData.judgeResponses }}
         <li class="project-response judge-feedback">
-          <h4 class="light-header"><strong>{{ this.[Judge Name] }}</strong>{{ roleAndOrg this.[Role] this.[Organization] }} — <em>Emoti-Con Judge</em></h4>
+          <h4 class="light-header"><strong>{{ this.[Judge Name] }}</strong> 👏 {{ roleAndOrg this.[Role] this.[Organization] }} — <em>Emoti-Con Judge</em></h4>
           <p>{{ this.[Judge Feedback] }}</p>
         </li>
       {{/each}}
@@ -237,7 +237,7 @@
     <ul class="response-list">
       {{#each responsesData.publicResponses }}
         <li class="project-response public-feedback">
-          <h4 class="light-header"><strong>{{ this.[First Name] }}</strong>, {{ this.[City] }}{{#if this.[Location] }}, {{ this.[Location] }}{{/if}}</h4>
+          <h4 class="light-header"><strong>{{ this.[First Name] }}</strong> 👏 {{#if this.[I am a] }} a {{ this.[I am a] }}{{/if}}{{#if this.[City]}} from {{ this.[City] }}{{/if}}</h4>
           <p>{{ this.[Public Feedback] }}</p>
         </li>
       {{/each}}

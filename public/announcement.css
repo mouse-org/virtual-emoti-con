@@ -404,6 +404,7 @@ li {
   justify-content: center;
   flex-wrap: wrap;
   padding: 0;
+  margin: 0 auto 3em;
 }
 
 .social-list li {
@@ -412,11 +413,16 @@ li {
   padding: 2px 10px;
 }
 
+.social-list h2 {
+  margin: 0;
+}
+
 
 
 .social-list li a {
   display: inline-block;
   font-size: 28px;
+  margin: 0;
 }
 
 .dot-list .highlight {

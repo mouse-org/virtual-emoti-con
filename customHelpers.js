@@ -19,7 +19,7 @@ module.exports = function(hbs) {
 
   hbs.registerHelper("roleAndOrg", function(role, org) {
     if (role && org) {
-      return `, ${role} at ${org}`
+      return ` ${role} at ${org}`
     } else {
       return " "
     }

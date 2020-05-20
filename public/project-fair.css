@@ -41,8 +41,21 @@ a {
   margin: 0 auto;
 }
 
-#nav-section {
+#intro-section {
+  margin: 0 auto;
+}
+
+#intro-section p {
+  max-width: 650px;
+  text-align: justify;
+  font-size: 18px;
+  line-height: 22px;
+  margin: 18px auto;
+}
+
+#intro-section h1, #intro-section h3 {
   text-align: center;
+  
 }
 
 #keynote {
@@ -55,10 +68,10 @@ a {
 }
 
 #keynote h2 {
-  margin: 0;
+  margin: .25em 0 .5em;
 }
 
-#keynote p {
+#keynote p, #project-more-info p {
   text-align: left;
   line-height: 20px;
 }

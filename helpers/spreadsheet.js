@@ -42,7 +42,7 @@ module.exports = async function getSpreadsheetData(doc, sheetIndex = 0, offset =
     // Parse GoogleSheets object into flat JSON
     const headers = sheet.headerValues;
     sheetData.rows =  await parseSpreadsheetData(rows, headers);
-    sheetData.rows = sheetData.rows.filter(i => i["Reviewed"] === "Yes" ? i : null)
+    sheetData.rows = sheetData.rows.filter(i => i["Reviewed"].toUpperCase() === "YES" ? i : null)
     //sheetData.row.sort((a,b) => (a["Project Name"]))
     
     // Return flat JSON for read only
