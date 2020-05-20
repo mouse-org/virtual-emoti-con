@@ -96,10 +96,6 @@ function parseCell(cell, header) {
   // This is a cell with a list of links  
   } else if (guessAttachment(header.toLowerCase()) === "links") {
     return cell.split("\n").join(", ").split(",").map(i => i.trim()).map(i => i.indexOf("http") === 0 ? {url:i, original: i} : {url: "http://" + i, original: i});
-  } else if (cell.indexOf("\n") > -1) {
-    console.log(cell);
-    return cell;
-
   } else {
     return cell;
   }
