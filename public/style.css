@@ -142,6 +142,11 @@ body {
 
 
 /* Footer */
+
+.image-list {
+  padding: 0;
+}
+
 .image-list li {
   list-style-type: none;
   display: inline-block;
