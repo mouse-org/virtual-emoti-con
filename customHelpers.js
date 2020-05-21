@@ -52,5 +52,48 @@ module.exports = function(hbs) {
     
   })
 
+  hbs.registerHelper('tweetText', function(projectData) {
+    if (!projectData) {
+      return "https://virtual.emoti-con.org/";
+    }
+
+    let tweetText = '';
+    if (projectData["Project Name"]) {
+      tweetText += "Take a look at " + projectData["Project Name"] + " a project in the Emoti-Con NYC Project Fair! "
+    }
+
+    if (projectData.rowId) {
+      tweetText += "https://virtual.emoti-con.org/projects/" + projectData.rowId
+    }
+
+    if (!tweetText) {
+      return "https://virtual.emoti-con.org/";
+    }
+
+    return tweetText;
+
+  })
+
+  hbs.registerHelper('facebookText', function(projectData) {
+    if (!projectData) {
+      return "?href=https://virtual.emoti-con.org/";
+    }
+
+    let facebookText = '?';
+    if (projectData["Project Name"]) {
+      facebookText += "quote=Take%20a%20look%20at%20" + projectData["Project Name"] + "%20a%20project%20in%20the%20Emoti-Con%20NYC%20Project%20Fair!&"
+    }
+
+    if (projectData.rowId) {
+      facebookText += "href=https://virtual.emoti-con.org/projects/" + projectData.rowId
+    }
+
+    if (!facebookText) {
+      return "?href=https://virtual.emoti-con.org/";
+    }
+
+    return facebookText;
+  })
+
   return hbs;
 }

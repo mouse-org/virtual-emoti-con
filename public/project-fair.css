@@ -316,6 +316,44 @@ a.new-tab-form-link {
   display: inline-block;
 }
 
+/* Sharing */
+
+#share-button-list {
+  width: Calc(100% - 40px);
+  margin: .5em 20px;
+  text-align: center;
+  padding: 0;
+}
+
+#share-button-list li{
+  display: inline-block;
+}
+
+.share-button {
+  border: 1px solid #CFCFCF;
+  background-color: #FFDAE7;
+  border-radius: 2px;
+  padding: 7px;
+  font-size: 20px;
+  box-shadow: -5px 5px #CFCFCF;
+  margin: 10px;
+}
+
+.share-button:hover {
+  border: 1px solid #AFAFAF;
+  box-shadow: -5px 5px #AFAFAF;
+  border: 1px solid #8F8F8F;
+  background-color: #FFD9E6;
+}
+
+.share-button:active {
+  box-shadow: -2px 2px #8F8F8F;
+  background-color: #E6C3CF;
+  position: relative;
+  top: 3px;
+  left: -3px;
+}
+
 
 @media (max-width: 600px) {
   response-section {

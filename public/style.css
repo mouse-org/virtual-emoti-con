@@ -17,6 +17,7 @@ body {
   margin: 10px;
   background-color: #FFDAE7;
   padding: 3px;
+  border-radius: 2px;
 }
 
 .button a {
