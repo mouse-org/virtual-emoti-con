@@ -37,5 +37,32 @@ module.exports = function(hbs) {
     return new hbs.SafeString(text);
   });
 
+  hbs.registerHelper('socialImage', function(singleProject, projectData) {
+    if (
+      singleProject
+      && projectData["Primary Image"]
+      && projectData["Primary Image"].images
+      && projectData["Primary Image"].urls
+      && projectData["Primary Image"].urls[0]
+    ) {
+      return `https://drive.google.com/uc?export=view&id=${projectData["Primary Image"].urls[0]}`
+    } else {
+      return "https://virtual.emoti-con.org/images/social-card.png";
+    }
+    /*
+    {{#if projectData.[Primary Image] }}
+      {{#if projectData.[Primary Image].images}}
+        {{#each projectData.[Primary Image].urls}}
+          <div class="primary-image">
+            <!--{{! Edit URL to make hotlinkable }}-->
+              <img src="https://drive.google.com/uc?export=view&id={{this}}" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." />
+          </div>
+        {{/each}}
+      {{/if}}
+    {{/if}}
+    */
+    
+  })
+
   return hbs;
 }

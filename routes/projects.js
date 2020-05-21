@@ -112,6 +112,7 @@ router.get("/:projectId", async function(req, res) {
 
     const combinedData = {
       docTitle: projectSheetData.docTitle,
+      singleProject: true,
       projectData: projectSheetData.rows[0],
       responsesData: responsesSheetData
     }

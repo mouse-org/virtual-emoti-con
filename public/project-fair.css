@@ -18,6 +18,12 @@ body {
   */
 }
 
+@media (max-width: 770px) {
+  body {
+    margin: 0 10px;
+  }
+}
+
 a {
   color: black;
   text-decoration: none;

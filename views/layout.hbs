@@ -12,18 +12,18 @@
     <link rel="icon" href="/images/emoti-con-logo-small-blue-grey.png" type="image/png"/>
     
     <!-- Social -->
-    <meta property="og:title" content="Emoti-Con NYC 2020"/>
-    <meta property="og:description" content="A Virtual Media & Technology Project Fair for NYC students!" />
-    <meta property="og:image" content="https://virtual.emoti-con.org/images/social-card.png" />
+    <meta property="og:title" content="{{#if singleProject}}{{projectData.[Project Name]}} - {{/if}}Emoti-Con NYC"/>
+    <meta property="og:description" content="A {{#if singleProject}} project in the Emoti-Con {{/if}}Virtual Media & Technology Project Fair for NYC students!" />
+    <meta property="og:image" content="{{socialImage singleProject projectData}}" />
 
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@EmotiCon_NYC" />
     <meta name="twitter:creator" content="@EmotiCon_NYC" />
-    <meta name="twitter:title" content="Emoti-Con NYC 2020" />
-    <meta name="twitter:description" content="A Virtual Media & Technology Project Fair for NYC students!" />
-    <meta name="twitter:image" content="https://virtual.emoti-con.org/images/social-card.png" />
+    <meta name="twitter:title" content="{{#if singleProject}}{{projectData.[Project Name]}} - {{/if}}Emoti-Con NYC" />
+    <meta name="twitter:description" content="A {{#if singleProject}} project in the Emoti-Con {{/if}}Virtual Media & Technology Project Fair for NYC students!" />
+    <meta name="twitter:image" content="{{socialImage singleProject projectData}}" />
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Signika:wght@400;700&display=swap" rel="stylesheet">
