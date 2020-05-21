@@ -60,11 +60,19 @@ router.get("/:projectId", async function(req, res) {
     });
 
     responsesSheetData.judgeResponses = responsesSheetData.rows.filter(i => {
-      return (i["Reviewed"].toUpperCase() === "YES" && i["Judge Response"].toUpperCase() === "YES");
+      return (
+        i["Reviewed"]
+        && i["Reviewed"].toUpperCase() === "YES"
+        && i["Judge Response"].toUpperCase() === "YES"
+      );
     });
 
     responsesSheetData.publicResponses = responsesSheetData.rows.filter(i => {
-      return (i["Reviewed"].toUpperCase() === "YES" && i["Judge Response"].toUpperCase() === "NO");
+      return (
+        i["Reviewed"]
+        && i["Reviewed"].toUpperCase() === "YES"
+        && i["Judge Response"].toUpperCase() === "NO"
+      );
     });
 
   } catch (error) {

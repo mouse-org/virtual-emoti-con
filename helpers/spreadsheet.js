@@ -47,8 +47,22 @@ module.exports = async function getSpreadsheetData(doc, sheetIndex = 0, offset =
     sheetData.rows = sheetData.rows.filter(i => i["Reviewed"].toUpperCase() === "YES" ? i : null)
 
     // Sort projects alphabetically by name:
-    let p = "Project Name"
-    sheetData.rows = sheetData.rows.sort((a,b) => (a[p].toUpperCase() > b[p].toUpperCase() ? 1 : -1));
+    
+    sheetData.rows = sheetData.rows.sort((a,b) => {
+      let p = "Project Name"
+      let aProjectName = '';
+      let bProjectName = '';
+
+      if (a[p]) {
+        aProjectName = a[p].toUpperCase();
+      }
+
+      if (b[p]) {
+        bProjectName = b[p].toUpperCase();
+      }
+
+      return aProjectName > bProjectName ? 1 : -1;   
+    });
     
     // Return flat JSON for read only
     return sheetData

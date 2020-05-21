@@ -227,19 +227,33 @@
 
     <ul class="response-list">
       {{#each responsesData.judgeResponses }}
-        <li class="project-response judge-feedback">
-          <h4 class="light-header"><strong>{{ this.[Judge Name] }}</strong> 👏 {{ roleAndOrg this.[Role] this.[Organization] }} — <em>Emoti-Con Judge</em></h4>
-          <p>{{ this.[Judge Feedback] }}</p>
-        </li>
+        {{#if this.[Judge Feedback]}}
+          <li class="project-response judge-feedback">
+            {{#if this.[Judge Name]}}
+              <h4 class="light-header">
+                <strong>{{ this.[Judge Name] }}</strong> 👏 {{ roleAndOrg this.[Role] this.[Organization] }} — <em>Emoti-Con Judge</em>
+              </h4>
+            {{else}}
+              <h4 class="light-header">
+                <strong>Emoti-Con Judge</strong> 👏 {{ roleAndOrg this.[Role] this.[Organization] }}
+              </h4>
+            {{/if}}
+            <p>{{ this.[Judge Feedback] }}</p>
+          </li>
+        {{/if}}
       {{/each}}
     </ul>
     <h3>Feedback from the Community:</h3>
     <ul class="response-list">
       {{#each responsesData.publicResponses }}
-        <li class="project-response public-feedback">
-          <h4 class="light-header"><strong>{{ this.[First Name] }}</strong> 👏 {{#if this.[I am a] }} a {{ this.[I am a] }}{{/if}}{{#if this.[City]}} from {{ this.[City] }}{{/if}}</h4>
-          <p>{{ this.[Public Feedback] }}</p>
-        </li>
+        {{#if this.[Public Feedback]}}
+          <li class="project-response public-feedback">
+            <h4 class="light-header">
+              <strong>{{#if this.[First Name]}}{{ this.[First Name] }}{{else}}Emoti-Con Guest{{/if}}</strong> 👏 {{#if this.[I am a] }} a {{ this.[I am a] }}{{/if}}{{#if this.[City]}} from {{ this.[City] }}{{/if}}
+            </h4>
+            <p>{{ this.[Public Feedback] }}</p>
+          </li>
+        {{/if}}
       {{/each}}
     </ul>
     {{/if}}
