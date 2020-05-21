@@ -78,7 +78,7 @@ module.exports = function(hbs) {
     if (!projectData) {
       return "?href=https://virtual.emoti-con.org/";
     }
-
+    /*
     let facebookText = '?';
     if (projectData["Project Name"]) {
       facebookText += "quote=Take%20a%20look%20at%20" + projectData["Project Name"] + "%20a%20project%20in%20the%20Emoti-Con%20NYC%20Project%20Fair!&"
@@ -88,8 +88,14 @@ module.exports = function(hbs) {
       facebookText += "href=https://virtual.emoti-con.org/projects/" + projectData.rowId
     }
 
+    
     if (!facebookText) {
       return "?href=https://virtual.emoti-con.org/";
+    }
+    */
+
+    if (projectData.rowId) {
+      return "https://www.facebook.com/sharer/sharer.php?u=https://virtual.emoti-con.org/projects/" + projectData.rowId;
     }
 
     return facebookText;
