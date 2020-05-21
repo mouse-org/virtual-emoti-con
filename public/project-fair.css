@@ -16,6 +16,7 @@ body {
   font-size: 115%;
   line-height: 120%;
   */
+  z-index: 1;
 }
 
 @media (max-width: 770px) {
@@ -120,6 +121,12 @@ a {
   vertical-align: top;
 }
 
+@media (max-width: 350px) {
+  .index-project {
+    width: 280px;
+  }
+}
+
 .index-project:hover, .index-project:active {
   border: 2px solid #FFADCA;
   background-color: #FFFAFB;
@@ -164,11 +171,14 @@ a {
   font-size: 20px;
   border-radius: 10px;
   outline:none;
+  transition: font-size .2s;
 }
 
 .reaction-button:hover {
   cursor: pointer;
   background-color: #ffdae7;
+  font-size: 40px;
+  position: relative;
 }
 
 a.project-link {
@@ -248,6 +258,30 @@ a.project-link {
 
 
 /* Response Section */
+
+#reactions-list {
+  list-style-type: none;
+  padding: 0;
+  margin: .5em 20px;
+  width: Calc(100% - 40px);
+  text-align: center;
+}
+
+#reactions-list li {
+  display: inline-block;
+  min-width: 100px;
+}
+
+#reactions-list h4 {
+  line-height: 160%;
+}
+
+@keyframes emojiAnimate {
+  0% {
+      top: 50vh;
+      left: 50vw;
+  }
+}
 
 #response-section {
   background-color: #98DDF9;
@@ -360,3 +394,11 @@ a.new-tab-form-link {
     border-radius: 0px;
   }
 }
+
+
+
+
+
+
+
+

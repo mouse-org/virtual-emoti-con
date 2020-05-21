@@ -1,6 +1,18 @@
+const emojis = {
+  alien: "👾",
+  rocket: "🚀",
+  globe: "🌎",
+  rainbow: "🌈",
+  lightbulb: "💡"
+}
+
+
+
 function sendReaction(projectId, reaction) {
   console.log("project id:", projectId);
   console.log("reaction:", reaction);
+
+  displayReaction(emojis[reaction]);
   
   const counterIdBefore = `project-${projectId}-field-${reaction}-reaction-count`;
   const counterBefore = document.getElementById(counterIdBefore);
@@ -67,4 +79,28 @@ var publicFeedbackSubmit = document.getElementById("public-feedback-submit");
   if (publicFeedbackSubmit) {
   var projectId = document.getElementById("project-id").innerHTML.trim();
   publicFeedbackSubmit.addEventListener('click', sendPublicFeedback.bind(this, projectId));
+}
+
+
+
+function displayReaction(emoji) {
+  const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+  const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+
+  const reactions = document.getElementById("reactions-display");
+  for (let i = 0; i < 100; i++) {
+
+    var node = document.createElement("div");
+    const randomW = Math.floor(Math.random() * Math.floor(vw));
+    const randomW2 = Math.floor(Math.random() * Math.floor(vw));
+    const randomH = Math.floor(Math.random() * Math.floor(vh));
+    const randomH2 = Math.floor(Math.random() * Math.floor(vh));
+    node.style.cssText = `font-size: 30px;position: fixed; top: ${randomH}px; left: ${randomW}px; z-index: 20; animation: .7s ease-out 0s 1 emojiAnimate;`;
+    var textnode = document.createTextNode(emoji);
+    node.appendChild(textnode);
+    reactions.appendChild(node);
+    setTimeout(() => {
+      reactions.innerHTML = '';
+    }, 650);
+  }
 }

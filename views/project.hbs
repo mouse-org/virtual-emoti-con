@@ -219,22 +219,33 @@
     <h2 class="project-section-header">Community Feedback:</h2>
 
     <div class="reactions-container">
+
+      <div id="reactions-display" style="position: fixed; top: 0; left: 0;height: 0; width: 0;">
+
+      </div>
+      
           
       <div class="reaction">
-        {{#each reactions}}
-          <h4>
-            <button onclick="sendReaction({{ ../projectData.rowId }}, '{{ this.name }}')" class="reaction-button">
-              {{ this.emoji }}
-              <span id="project-{{../projectData.rowId}}-field-{{ this.name }}-reaction-count">
-                {{#if (lookup ../projectData this.name)}}
-                  {{ lookup ../projectData this.name }}
-                {{else }}
-                  0
-                {{/if}}
-              </span>
-            </button>
-          </h4>
-        {{/each}}
+        <ul id="reactions-list">
+          {{#each reactions}}
+            <li>
+              <h4>
+                <button onclick="sendReaction({{ ../projectData.rowId }}, '{{ this.name }}')" class="reaction-button">
+                  {{ this.emoji }}
+                  <span id="project-{{../projectData.rowId}}-field-{{ this.name }}-reaction-count">
+                    {{#if (lookup ../projectData this.name)}}
+                      {{ lookup ../projectData this.name }}
+                    {{else }}
+                      0
+                    {{/if}}
+                  </span>
+                </button>
+                <br/>
+                {{ this.name }}
+              </h4>
+            </li>
+          {{/each}}
+        </ul>
       </div>
   
     </div>
