@@ -49,18 +49,6 @@ module.exports = function(hbs) {
     } else {
       return "https://virtual.emoti-con.org/images/social-card.png";
     }
-    /*
-    {{#if projectData.[Primary Image] }}
-      {{#if projectData.[Primary Image].images}}
-        {{#each projectData.[Primary Image].urls}}
-          <div class="primary-image">
-            <!--{{! Edit URL to make hotlinkable }}-->
-              <img src="https://drive.google.com/uc?export=view&id={{this}}" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." />
-          </div>
-        {{/each}}
-      {{/if}}
-    {{/if}}
-    */
     
   })
 
