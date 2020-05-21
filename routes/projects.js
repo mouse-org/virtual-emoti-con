@@ -28,6 +28,23 @@ router.get("/", async function(req, res) {
   }
 });
 
+router.get("/random", async function(req, res) {
+  const sheetData = await getSpreadsheetData(doc);
+
+  if (process.env.NUMBER_OF_ROWS) {
+    const randomIndex = 2 + Math.floor(Math.random() * Math.floor(process.env.NUMBER_OF_ROWS - 1));
+    res.redirect("/projects/" + randomIndex + "?random=true");
+  } else {
+    if (sheetData && sheetData.rows) {
+      const numberOfProjects = sheetData.rows.length;
+      const randomIndex = 2 + Math.floor(Math.random() * Math.floor(numberOfProjects));
+      res.redirect("/projects/" + randomIndex + "?random=true");
+    } else {
+      res.send("error");
+    }
+  }  
+})
+
 router.get("/:projectId", async function(req, res) {
   const projectSheetIndex = 0;
   const responsesSheetIndex = 1;
