@@ -45,7 +45,7 @@ a {
   margin: 0 auto;
 }
 
-#intro-section p {
+.project-fair-intro-paragraph {
   max-width: 650px;
   text-align: justify;
   font-size: 18px;
