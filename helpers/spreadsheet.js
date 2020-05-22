@@ -42,8 +42,27 @@ module.exports = async function getSpreadsheetData(doc, sheetIndex = 0, offset =
     // Parse GoogleSheets object into flat JSON
     const headers = sheet.headerValues;
     sheetData.rows =  await parseSpreadsheetData(rows, headers);
-    sheetData.rows = sheetData.rows.filter(i => i["Reviewed"] === "Yes" ? i : null)
-    //sheetData.row.sort((a,b) => (a["Project Name"]))
+    
+    // Filter out unapproved projects:
+    sheetData.rows = sheetData.rows.filter(i => i["Reviewed"].toUpperCase() === "YES" ? i : null)
+
+    // Sort projects alphabetically by name:
+    
+    sheetData.rows = sheetData.rows.sort((a,b) => {
+      let p = "Project Name"
+      let aProjectName = '';
+      let bProjectName = '';
+
+      if (a[p]) {
+        aProjectName = a[p].toUpperCase();
+      }
+
+      if (b[p]) {
+        bProjectName = b[p].toUpperCase();
+      }
+
+      return aProjectName > bProjectName ? 1 : -1;   
+    });
     
     // Return flat JSON for read only
     return sheetData

@@ -12,18 +12,18 @@
     <link rel="icon" href="/images/emoti-con-logo-small-blue-grey.png" type="image/png"/>
     
     <!-- Social -->
-    <meta property="og:title" content="Emoti-Con NYC 2020"/>
-    <meta property="og:description" content="A Virtual Media & Technology Project Fair for NYC students!" />
-    <meta property="og:image" content="https://virtual.emoti-con.org/images/social-card.png" />
+    <meta property="og:title" content="{{#if singleProject}}{{projectData.[Project Name]}} - {{/if}}Emoti-Con NYC"/>
+    <meta property="og:description" content="A {{#if singleProject}} project in the Emoti-Con {{/if}}Virtual Media & Technology Project Fair for NYC students!" />
+    <meta property="og:image" content="{{socialImage singleProject projectData}}" />
 
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@EmotiCon_NYC" />
     <meta name="twitter:creator" content="@EmotiCon_NYC" />
-    <meta name="twitter:title" content="Emoti-Con NYC 2020" />
-    <meta name="twitter:description" content="A Virtual Media & Technology Project Fair for NYC students!" />
-    <meta name="twitter:image" content="https://virtual.emoti-con.org/images/social-card.png" />
+    <meta name="twitter:title" content="{{#if singleProject}}{{projectData.[Project Name]}} - {{/if}}Emoti-Con NYC" />
+    <meta name="twitter:description" content="A {{#if singleProject}} project in the Emoti-Con {{/if}}Virtual Media & Technology Project Fair for NYC students!" />
+    <meta name="twitter:image" content="{{socialImage singleProject projectData}}" />
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Signika:wght@400;700&display=swap" rel="stylesheet">
@@ -48,6 +48,19 @@
 
     <div id="terms-container">
       <hr/>
+
+      <div class="section-title">
+        <h2 class="highlight">Organized by:</h2>
+      </div>
+
+      <ul class="image-list">
+        <li><a href="https://emoti-con.org/" target="blank"><img src="/images/emoti-con-logo-small-blue-grey.png" target="blank"></a></li>
+        <li><a href="https://globalkids.org/" target="blank"><img src="/images/global-kids.png"></a></li>
+        <li><a href="https://mouse.org/" target="blank"><img src="/images/mouse.png"></a></li>
+        <li><a href="https://www.newschool.edu/parsons/" target="blank"><img src="/images/parsons.png"></a></li>
+        <li><a href="https://www.nypl.org/" target="blank"><img src="/images/nypl.png"></a></li>
+        <li><a href="http://cs4all.nyc/" target="blank"><img src="/images/csforall.png"></a></li>
+      </ul>
       <p>
         <a href="https://docs.google.com/document/d/1T5HQSGVoCvWkKr-AW4h9cPus2YOyxWL5lD2l-EyCoPA/edit" target="blank">Emoti-Con Terms of Use and Privacy Policy</a>
       </p>
