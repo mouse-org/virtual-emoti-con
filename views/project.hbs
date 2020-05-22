@@ -60,7 +60,8 @@
         {{#each projectData.[Primary Image].urls}}
           <div class="primary-image">
             <!--{{! Edit URL to make hotlinkable }}-->
-              <img src="https://drive.google.com/uc?export=view&id={{this}}" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." />
+              <!--<img src="https://drive.google.com/uc?export=view&id={{this}}" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." />-->
+              <img src="{{this}}" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." />
           </div>
         {{/each}}
       {{/if}}
@@ -95,8 +96,12 @@
           {{#each projectData.[Images].urls }}
             <div class="project-image">
               <!--{{! Edit URL to make hotlinkable }}-->
-              <a href="https://drive.google.com/uc?export=view&id={{ this }}">
+              <!--<a href="https://drive.google.com/uc?export=view&id={{ this }}">
                 <img src="https://drive.google.com/uc?export=view&id={{ this }}" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." />
+              </a>-->
+
+              <a href="{{ this }}">
+                <img src="{{ this }}" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." />
               </a>
             </div>
           {{/each}}

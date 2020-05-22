@@ -88,7 +88,8 @@
             {{#each [Primary Image].urls}}
               <div class="image">
                 <!--{{! Edit URL to make hotlinkable }}-->
-                  <img src="https://drive.google.com/uc?export=view&id={{this}}" style="width: 500px; max-width: 100%; height: auto" />
+                  <!--<img src="https://drive.google.com/uc?export=view&id={{this}}" style="width: 500px; max-width: 100%; height: auto" />-->
+                  <img src="{{this}}" style="width: 500px; max-width: 100%; height: auto" />
               </div>
             {{/each}}
           {{/if}}

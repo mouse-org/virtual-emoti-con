@@ -116,6 +116,11 @@ router.get("/:projectId", async function(req, res) {
       projectData: projectSheetData.rows[0],
       responsesData: responsesSheetData
     }
+
+    if (req.query.api === "true") {
+      res.json(combinedData);
+      return
+    }
     
     const renderData = Object.assign({}, templateData, combinedData);
 
