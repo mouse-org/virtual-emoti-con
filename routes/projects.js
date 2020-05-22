@@ -28,7 +28,7 @@ router.get("/", async function(req, res) {
 
     res.render("projectsIndex", renderData);
   } else {
-    res.send("error");
+    res.redirect("/404");
   }
 });
 
