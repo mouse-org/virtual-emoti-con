@@ -1,22 +1,32 @@
 module.exports = [
   {
     name: "alien",
-    emoji: "👾"
+    emoji: "👾",
+    funName: "Fun & Playful",
+    shortFunName: "Fun"
   },
   {
     name: "rocket",
-    emoji: "🚀"
+    emoji: "🚀",
+    funName: "Innovative & Creative",
+    shortFunName: "Innovative "
   },
   {
     name: "globe",
-    emoji: "🌎"
+    emoji: "🌎",
+    funName: "Meaningful & Helpful",
+    shortFunName: "Helpful"
   },
   {
     name: "rainbow",
-    emoji: "🌈"
+    emoji: "🌈",
+    funName: "Great Design & Artistic",
+    shortFunName: "Great Design "
   },
   {
     name: "lightbulb",
-    emoji: "💡"
+    emoji: "💡",
+    funName: "Fascinating & Makes Me Think",
+    shortFunName: "Makes Me Think"
   }
 ]

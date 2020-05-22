@@ -173,7 +173,7 @@ a {
 
 a.project-link {
   text-decoration: underline;
-  color: #4F4F4F;
+  color: #000000;
 }
 
 .primary-image {
@@ -245,6 +245,26 @@ a.project-link {
 .project-media-section {
   margin-top: 2em;
 }
+
+.video-embed {
+  width: 427px;
+  height: 240px;
+}
+
+@media (max-width: 450px) {
+  .video-embed {
+    width: 350px;
+    height: 197px;
+  }
+}
+
+@media (max-width: 380px) {
+  .video-embed {
+    width: 280px;
+    height: 157.5px;
+  }
+}
+
 
 
 /* Response Section */
@@ -376,6 +396,13 @@ a.new-tab-form-link {
   position: relative;
   top: 3px;
   left: -3px;
+}
+
+.share-icon {
+  height: 1em;
+  margin: 5px 5px 0 0;
+  position: relative;
+  top: 3px;
 }
 
 

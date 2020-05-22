@@ -32,7 +32,15 @@ app.get("/about", function(req, res) {
   res.render("about", { layout: "announcementLayout" });
 });
 
+app.use("/404", function(req, res) {
+  res.render("error", {error: "Page not found"});
+})
+
 app.use("/", projectsRouter);
+
+app.use("*", function(req, res) {
+  res.render("error", {error: "Page not found"});
+})
 
 var listener = app.listen(process.env.PORT, function() {
   console.log("Your app is listening on port " + listener.address().port);

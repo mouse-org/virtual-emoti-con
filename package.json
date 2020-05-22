@@ -7,14 +7,15 @@
     "start": "node -r dotenv/config server.js"
   },
   "dependencies": {
+    "aws-sdk": "^2.682.0",
+    "axios": "^0.19.2",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "google-spreadsheet": "^3.0.10",
     "hbs": "^4.1.1",
-    "aws-sdk": "^2.682.0",
-    "uuid": "^8.1.0",
+    "mongoose": "^5.9.15",
     "multer": "^1.4.2",
-    "axios": "^0.19.2"
+    "uuid": "^8.1.0"
   },
   "engines": {
     "node": "8.x"

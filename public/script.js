@@ -9,8 +9,8 @@ const emojis = {
 
 
 function sendReaction(projectId, reaction) {
-  console.log("project id:", projectId);
-  console.log("reaction:", reaction);
+  //console.log("project id:", projectId);
+  //console.log("reaction:", reaction);
 
   displayReaction(emojis[reaction]);
   
@@ -30,7 +30,13 @@ function sendReaction(projectId, reaction) {
     
     const counterId = `project-${data.projectId}-field-${data.reaction}-reaction-count`;
     const counter = document.getElementById(counterId);
-    counter.innerHTML = data.total;
+
+    // Increment counter
+    if (parseInt(counter.innerHTML) < data.total) {
+      counter.innerHTML = data.total;
+    }
+
+    
   })
   .catch(error => {
     console.log("Error: ", error);
@@ -103,4 +109,19 @@ function displayReaction(emoji) {
       reactions.innerHTML = '';
     }, 650);
   }
+}
+
+
+function copyLink(projectId) {
+  var copyText = document.getElementById("project-link-to-copy");
+
+  /* Select the text field */
+  copyText.select();
+  copyText.setSelectionRange(0, 999); /*For mobile devices*/
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+
+  /* Alert the copied text */
+  alert("Copied the text: " + copyText.value);
 }

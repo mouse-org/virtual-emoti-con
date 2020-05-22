@@ -5,11 +5,12 @@
 </div>
 
 <div id="nav-section" class="section">
-  <div class="centered-button-container">
-    <div class="button"><a href="/"><h2>Project Fair</h2></a></div>
-    <div class="button"><a href="/about"><h2>About Virtual Emoti-Con</h2></a></div>
+    <div class="centered-button-container">
+      <div class="button"><a href="/"><h2>All Projects & Keynote</h2></a></div>
+      <div class="button"><a href="/projects/random"><h2>🎲 Random Project!</h2></a></div>
+      <div class="button"><a href="/about"><h2>About Virtual Emoti-Con</h2></a></div>
+    </div>
   </div>
-</div>
 
 
 <div id="project-content">
@@ -155,7 +156,7 @@
           {{#each projectData.[Video].urls}}
             <!--{{! Edit URL to make hotlinkable }}-->
             <a href="https://drive.google.com/uc?export=view&id={{this}}">
-              <video width="427" height="240" controls>
+              <video class="video-embed" controls>
                 <source src="https://drive.google.com/uc?export=view&id={{this}}" type="video/mp4">
                 Your browser does not support the video tag.
               </video>
@@ -205,15 +206,19 @@
 
     <ul id="share-button-list">
       <li>
-        <a class="share-button" href="https://twitter.com/intent/tweet?text={{tweetText projectData}}" target="_blank">Twitter</a>
+        <a class="share-button" href="https://twitter.com/intent/tweet?text={{tweetText projectData}}" target="_blank"><span><img src="/images/share-twitter.png" class="share-icon" /></span>Twitter</a>
       </li>
       
       <li>
-        <!--
-        <a class="share-button" href="https://www.facebook.com/dialog/share{{facebookText projectData}}" target="_blank">Facebook</a>
-        -->
-        <a class="share-button" href="{{facebookText projectData}}" target="_blank">Facebook</a>
+        <a class="share-button" href="{{facebookText projectData}}" target="_blank"><span><img src="/images/share-facebook.png" class="share-icon" /></span>Facebook</a>
       </li>
+
+      <!--
+      <li>
+        <a class="share-button" href="#" onclick="copyLink({{projectData.rowId}})">Copy Link to This Project</a>
+        <input type="text" value="https://virtual.emoti-con.org/projects/{{projectData.rowId}}" style="height: 0; width: 0; position: fixed; top: -100; border: 0;" id="project-link-to-copy" />
+      </li>
+      -->
 
     </ul>
     
@@ -248,7 +253,7 @@
                   </span>
                 </button>
                 <br/>
-                {{ this.name }}
+                {{ this.shortFunName }}
               </h4>
             </li>
           {{/each}}

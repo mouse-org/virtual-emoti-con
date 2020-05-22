@@ -140,6 +140,12 @@ body {
   line-height: 32px;
 }
 
+/* Error */
+
+#error-page {
+  text-align: center;
+}
+
 
 /* Footer */
 

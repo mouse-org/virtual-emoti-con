@@ -31,42 +31,136 @@ var memoryUpload = multer({
   }
 }).single("file");
 
+const mongoose = require('mongoose');
+mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
+
+const ProjectData = require("../models/ProjectData");
+
 router.get("/", function(req, res) {
   res.send("Sync");
 });
 
-router.get("/projects/:projectId", async function(req, res) {
+
+router.get("/projects/data/:projectId", async function(req, res) {
+
+  if (!req.query.p || req.query.p != process.env.SYNC_PASSWORD) {
+    res.redirect("/404")
+    return;
+  }
+
+  const projectSheetIndex = 0;
+  const rowIndex = parseInt(req.params.projectId) - 2;
+
+  // Get data for specified project
+  try {
+    var projectSheetData = await getSpreadsheetData(
+      doc,
+      projectSheetIndex,
+      rowIndex,
+      1
+    );
+
+    if (!projectSheetData || !projectSheetData.rows) {
+      throw "Unable to access project.";
+    }
+  } catch (error) {
+    console.log("Error:");
+    console.log(error);
+
+    //🛎 Error Handling
+  }
+
+  try {
+    const projectData = projectSheetData.rows[0];
+
+    const dbProjectData = {
+      "rowId": parseInt(projectData["rowId"]),
+      "Reviewed": JSON.stringify(projectData["Reviewed"]),
+      "ProjectId": parseInt(projectData["ProjectId"]),
+      "alien": Number.isNaN(parseInt(projectData["alien"])) ? 0 : parseInt(projectData["alien"]),
+      "rocket": Number.isNaN(parseInt(projectData["rocket"])) ? 0 : parseInt(projectData["rocket"]),
+      "globe": Number.isNaN(parseInt(projectData["globe"])) ? 0 : parseInt(projectData["globe"]),
+      "rainbow": Number.isNaN(parseInt(projectData["rainbow"])) ? 0 : parseInt(projectData["rainbow"]),
+      "lightbulb": Number.isNaN(parseInt(projectData["lightbulb"])) ? 0 : parseInt(projectData["lightbulb"]),
+      "Primary Image": JSON.stringify(projectData["Primary Image"]),
+      "Timestamp": JSON.stringify(projectData["Timestamp"]),
+      //"I confirm that this project meets the three requirements above. ": JSON.stringify(JSON.stringify(projectData["I confirm that this project meets the three requirements above. "])),
+      //"Adult Name (First & Last)": JSON.stringify(projectData["Adult Name (First & Last)"]),
+      //"Adult Email Address": JSON.stringify(projectData["Adult Email Address"]),
+      "School or Organization": JSON.stringify(projectData["School or Organization"]),
+      //"Relationship to Student/s:": JSON.stringify(projectData["Relationship to Student/s:"]),
+      //"(Optional) Are there other email addresses we should include in outreach about this project?  List here separated by commas. ": JSON.stringify(projectData["(Optional) Are there other email addresses we should include in outreach about this project?  List here separated by commas. "]),
+      "Project Name": JSON.stringify(projectData["Project Name"]),
+      "Project Description": JSON.stringify(projectData["Project Description"]),
+      "Student Names": JSON.stringify(projectData["Student Names"]),
+      "Age Range": JSON.stringify(projectData["Age Range"]),
+      "Project Category": JSON.stringify(projectData["Project Category"]),
+      "Organization or Program Affiliation": JSON.stringify(projectData["Organization or Program Affiliation"]),
+      "Images": JSON.stringify(projectData["Images"]),
+      "Video": JSON.stringify(projectData["Video"]),
+      "Slides": JSON.stringify(projectData["Slides"]),
+      "Links": JSON.stringify(projectData["Links"]),
+      "Audio": JSON.stringify(projectData["Audio"]),
+      "More About Our Project": JSON.stringify(projectData["More About Our Project"]),
+      "Student Count": JSON.stringify(projectData["Student Count"]),
+      "Schools": JSON.stringify(projectData["Schools"])
+    }
+
+    const mongoSavedProjectData = new ProjectData(dbProjectData);
+    let savedResponse = await mongoSavedProjectData.save();
+
+    if (!savedResponse) {
+      throw "Response not saved";
+    }
+
+    res.json(savedResponse);
+  } catch (error) {
+    res.send({error: error});
+  }
+
+
+
+})
+
+
+router.get("/projects/images/:projectId", async function(req, res) {
+
+  if (!req.query.p || req.query.p != process.env.SYNC_PASSWORD) {
+    res.redirect("/404")
+    return;
+  }
+
   const projectSheetIndex = 0;
   const rowIndex = parseInt(req.params.projectId) - 2;
   
   const columns = ["Primary Image", "Images"]
 
   const updatedData = [];
+  
+  
+  // Get data for specified project
+  try {
+    var projectSheetData = await getSpreadsheetData(
+      doc,
+      projectSheetIndex,
+      rowIndex,
+      1
+    );
+
+    if (!projectSheetData || !projectSheetData.rows) {
+      throw "Unable to access project.";
+    }
+  } catch (error) {
+    console.log("Error:");
+    console.log(error);
+
+    //🛎 Error Handling
+  }
 
   for (let m in columns) {
+
     const column = columns[m];
-    
     console.log("*** Syncing ", column);
-    
-    // Get data for specified project
-    try {
-      var projectSheetData = await getSpreadsheetData(
-        doc,
-        projectSheetIndex,
-        rowIndex,
-        1
-      );
-
-      if (!projectSheetData || !projectSheetData.rows) {
-        throw "Unable to access project.";
-      }
-    } catch (error) {
-      console.log("Error:");
-      console.log(error);
-
-      //🛎 Error Handling
-    }
-
 
     const awsImages = [];
     try {
@@ -150,10 +244,7 @@ router.get("/projects/:projectId", async function(req, res) {
     }
   }
   
-  
   res.json(updatedData); 
-    
-    
 });
 
 module.exports = router;
