@@ -43,7 +43,7 @@ router.get("/random", async function(req, res) {
       const randomIndex = 2 + Math.floor(Math.random() * Math.floor(numberOfProjects));
       res.redirect("/projects/" + randomIndex + "?random=true");
     } else {
-      res.send("error");
+      res.redirect("/404");
     }
   }  
 })
