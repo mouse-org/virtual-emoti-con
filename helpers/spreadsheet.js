@@ -94,14 +94,23 @@ function parseCell(cell, header) {
     return '';
     
   // This is a cell with an attachment 
-  } else if (cell.substring(0, 30) === 'https://drive.google.com/open?') {
+  } else if (
+    cell.substring(0, 30) === 'https://drive.google.com/open?'
+    || cell.substring(0, 34) === 'https://emoti-con.s3.amazonaws.com'  
+  ) {
     
     const attachmentType = guessAttachment(header.toLowerCase());
     
     if (attachmentType) {
       const links = cell.split(",");
       
-      const linksArray = links.map(i => i.split('=')[1]);
+      const linksArray = links.map(i => {
+        if (i.substring(0, 30) === 'https://drive.google.com/open?') {
+          return i.split('=')[1];
+        } else {
+          return i;
+        }
+      });
       
       const cellObject = {};
       cellObject[attachmentType] = true;
