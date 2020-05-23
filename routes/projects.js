@@ -48,7 +48,7 @@ router.get("/random", async function(req, res) {
   }  
 })
 
-router.get("/:projectId", async function(req, res) {
+router.get("/sheet-version/:projectId", async function(req, res) {
   const projectSheetIndex = 0;
   const responsesSheetIndex = 1;
   const rowIndex = parseInt(req.params.projectId) - 2;
@@ -147,7 +147,7 @@ router.get("/:projectId", async function(req, res) {
   
 })
 
-router.get("/m/:projectId", async function(req, res) {
+router.get("/:projectId", async function(req, res) {
   const projectSheetIndex = 0;
   const responsesSheetIndex = 1;
   const rowIndex = parseInt(req.params.projectId) - 2;
