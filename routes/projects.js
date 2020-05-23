@@ -108,6 +108,9 @@ router.get("/random", async function(req, res) {
     if (sheetData && sheetData.rows) {
       const numberOfProjects = sheetData.rows.length;
       const randomIndex = 2 + Math.floor(Math.random() * Math.floor(numberOfProjects));
+      if (randomIndex === 9 || randomIndex === 10) {
+        randomIndex += Math.floor(Math.random() * Math.floor(40));
+      }
       res.redirect("/projects/" + randomIndex + "?random=true");
     } else {
       res.redirect("/404");
