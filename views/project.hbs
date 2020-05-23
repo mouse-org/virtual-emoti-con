@@ -175,17 +175,16 @@
             </a>
             -->
             <!--{{! Edit URL to make hotlinkable }}-->
-            <a href="{{this}}">
-              <video class="video-embed" controls>
-                <source src="{{this}}" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>
-            </a>
+            <video class="video-embed" controls>
+              <source src="{{this}}" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <!--
             <br/>
-            <!--{{! Edit URL to make hotlinkable }}-->
             <a class="project-link button" href="{{this}}" target="_blank">
               <h4>Open Video in a new tab</h4>
             </a>
+            -->
           {{/each}}
         {{/if}}
       </div>
