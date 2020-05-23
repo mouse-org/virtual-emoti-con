@@ -55,7 +55,7 @@ app.get("/", async function(req, res) {
 
   const rows = await ProjectData.find();
 
-  const parsedRows = rows.map(projectData => {
+  let parsedRows = rows.map(projectData => {
     let parsedProjectData = {};
 
     parsedProjectData["rowId"] = projectData["rowId"],
