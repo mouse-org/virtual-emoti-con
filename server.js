@@ -86,6 +86,22 @@ app.get("/", async function(req, res) {
     return parsedProjectData;
   })
 
+  parsedRows = parsedRows.sort((a,b) => {
+    let p = "Project Name"
+    let aProjectName = '';
+    let bProjectName = '';
+
+    if (a[p]) {
+      aProjectName = a[p].toUpperCase();
+    }
+
+    if (b[p]) {
+      bProjectName = b[p].toUpperCase();
+    }
+
+    return aProjectName > bProjectName ? 1 : -1;   
+  });
+
   const allProjects = {
     rows: parsedRows
   }
