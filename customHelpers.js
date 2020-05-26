@@ -47,7 +47,7 @@ module.exports = function(hbs) {
     ) {
       return `https://drive.google.com/uc?export=view&id=${projectData["Primary Image"].urls[0]}`
     } else {
-      return "https://virtual.emoti-con.org/images/social-card-logo.png";
+      return "/images/social-card-logo.png";
     }
     
   })
