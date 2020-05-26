@@ -37,7 +37,7 @@ module.exports = function(hbs) {
     return new hbs.SafeString(text);
   });
 
-  hbs.registerHelper('socialImage', function(singleProject, projectData) {
+  hbs.registerHelper('twitterImage', function(singleProject, projectData) {
     if (
       singleProject
       && projectData["Primary Image"]
@@ -48,6 +48,21 @@ module.exports = function(hbs) {
       return `https://drive.google.com/uc?export=view&id=${projectData["Primary Image"].urls[0]}`
     } else {
       return "/images/social-card-logo.png";
+    }
+    
+  })
+
+  hbs.registerHelper('socialImage', function(singleProject, projectData) {
+    if (
+      singleProject
+      && projectData["Primary Image"]
+      && projectData["Primary Image"].images
+      && projectData["Primary Image"].urls
+      && projectData["Primary Image"].urls[0]
+    ) {
+      return `https://drive.google.com/uc?export=view&id=${projectData["Primary Image"].urls[0]}`
+    } else {
+      return "/images/emoti-con-header.gif";
     }
     
   })
