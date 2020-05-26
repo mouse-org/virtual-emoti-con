@@ -74,7 +74,7 @@ module.exports = function(hbs) {
 
     let tweetText = '';
     if (projectData["Project Name"]) {
-      tweetText += "Take a look at " + projectData["Project Name"] + " a project in the Emoti-Con NYC Project Fair! "
+      tweetText += "Take a look at " + projectData["Project Name"] + " a project in the #EmotiCon2020 NYC Virtual Project Fair! "
     }
 
     if (projectData.rowId) {
