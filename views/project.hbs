@@ -287,7 +287,9 @@
 
     {{#if responsesData.rows.length }}
     
+    {{#if responsesData}}{{#if responsesData.judgeResponses}}
     <h3>Feedback from the Judges:</h3>
+    {{/if}}{{/if}}
 
     <ul class="response-list">
       {{#each responsesData.judgeResponses }}
@@ -307,7 +309,11 @@
         {{/if}}
       {{/each}}
     </ul>
+
+
+    {{#if responsesData}}{{#if responsesData.publicResponses}}
     <h3>Feedback from the Community:</h3>
+    {{/if}}{{/if}}
     <ul class="response-list">
       {{#each responsesData.publicResponses }}
         {{#if this.[Public Feedback]}}
