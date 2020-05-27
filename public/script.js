@@ -29,7 +29,7 @@ function sendReaction(projectId, reaction) {
   const counterBefore = document.getElementById(counterIdBefore);
   counterBefore.innerHTML = Number.isNaN(parseInt(counterBefore.innerHTML)) ? 1 : parseInt(counterBefore.innerHTML) + 1;
   
-  fetch(`/api/${projectId}/${reaction}/plus-one?key=pleaseDontSpamTheAPITHanks`)
+  fetch(`/api/${projectId}/${reaction}/plus-one?key=${pleaseDontSpamTheAPITHanks}`)
   .then((response) => {
     return response.json();
   })
