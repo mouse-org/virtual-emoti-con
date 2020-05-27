@@ -6,11 +6,22 @@ const emojis = {
   lightbulb: "💡"
 }
 
+let sentReactions = {};
 
 
 function sendReaction(projectId, reaction) {
   //console.log("project id:", projectId);
   //console.log("reaction:", reaction);
+
+  if (sentReactions[projectId] && sentReactions[projectId] > 10) {
+    return;
+  }
+
+  if (!sentReactions[projectId]) {
+    sentReactions[projectId] = 0;
+  }
+
+  sentReactions[projectId] += 1;
 
   displayReaction(emojis[reaction]);
   
