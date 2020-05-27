@@ -7,7 +7,7 @@ const emojis = {
 }
 
 let sentReactions = {};
-
+let pleaseDontSpamTheAPIThanks = "its_not_in_the_spirit_of_emoticon"
 
 function sendReaction(projectId, reaction) {
   //console.log("project id:", projectId);
@@ -29,7 +29,7 @@ function sendReaction(projectId, reaction) {
   const counterBefore = document.getElementById(counterIdBefore);
   counterBefore.innerHTML = Number.isNaN(parseInt(counterBefore.innerHTML)) ? 1 : parseInt(counterBefore.innerHTML) + 1;
   
-  fetch(`/api/${projectId}/${reaction}/plus-one`)
+  fetch(`/api/${projectId}/${reaction}/plus-one?key=pleaseDontSpamTheAPITHanks`)
   .then((response) => {
     return response.json();
   })

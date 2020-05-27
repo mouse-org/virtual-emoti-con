@@ -11,6 +11,10 @@ mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopo
 const ProjectData = require("../models/ProjectData");
 
 router.get("/:projectId/:reaction/plus-one", async function(req, res) {
+  console.log(req.query.key)
+  if (req.query.key != "its_not_in_the_spirit_of_emoticon") {
+    throw "No bots please";
+  }
   console.log("Project Id:", req.params.projectId, "Reaction:", req.params.reaction);
   const sheetIndex = 0;
   const rowIndex = parseInt(req.params.projectId) - 2;
