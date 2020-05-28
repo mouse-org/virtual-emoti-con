@@ -174,6 +174,7 @@ a {
 a.project-link {
   text-decoration: underline;
   color: #000000;
+  word-break: break-word;
 }
 
 .primary-image {
@@ -341,12 +342,17 @@ a.project-link {
 
 .google-form-container {
   width: 100%;
-  height: 900px;
-  max-height: 85vh;
+  height: 750px;
   overflow: scroll;
   border: 2px solid #DFDFDF;
   border-radius: 3px;
   background-color: white;
+}
+
+@media (max-width: 600px) {
+  .google-form-container {
+    max-height: 85vh;
+  }
 }
 
 .google-form-container iframe {
