@@ -103,7 +103,8 @@ router.get("/projects/data/:projectId", async function(req, res) {
       "Audio": JSON.stringify(projectData["Audio"]),
       "More About Our Project": JSON.stringify(projectData["More About Our Project"]),
       "Student Count": JSON.stringify(projectData["Student Count"]),
-      "Schools": JSON.stringify(projectData["Schools"])
+      "Schools": JSON.stringify(projectData["Schools"]),
+      "Award Name": JSON.stringify(projectData["Award Name"])
     }
 
     const mongoSavedProjectData = new ProjectData(dbProjectData);

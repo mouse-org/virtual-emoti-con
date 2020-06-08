@@ -30,5 +30,6 @@ module.exports =  mongoose.model('ProjectData', {
   "Audio": String,
   "More About Our Project": String,
   "Student Count": String,
-  "Schools": String
+  "Schools": String,
+  "Award Name": String
 });

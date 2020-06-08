@@ -57,12 +57,10 @@ function sendReaction(projectId, reaction) {
 
 
 var publicFeedbackSubmit = document.getElementById("public-feedback-submit");
-  if (publicFeedbackSubmit) {
+if (publicFeedbackSubmit) {
   var projectId = document.getElementById("project-id").innerHTML.trim();
   publicFeedbackSubmit.addEventListener('click', sendPublicFeedback.bind(this, projectId));
 }
-
-
 
 function displayReaction(emoji) {
   const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
@@ -99,4 +97,26 @@ function copyLink(projectId) {
 
   /* Alert the copied text */
   alert("Copied the text: " + copyText.value);
+}
+
+
+var awardsVideoButton = document.getElementById("awards-tab");
+var keynoteVideoButton = document.getElementById("keynote-tab");
+if (awardsVideoButton && keynoteVideoButton) {
+  awardsVideoButton.addEventListener('click', switchToAwards);
+  keynoteVideoButton.addEventListener('click', switchToKeynote);
+}
+
+function switchToAwards() {
+  awardsVideoButton.classList.add("active-video-tab");
+  keynoteVideoButton.classList.remove("active-video-tab");
+  document.getElementById("keynote").style.display = "none";
+  document.getElementById("awards").style.display = "block";
+}
+
+function switchToKeynote() {
+  keynoteVideoButton.classList.add("active-video-tab");
+  awardsVideoButton.classList.remove("active-video-tab");
+  document.getElementById("awards").style.display = "none";
+  document.getElementById("keynote").style.display = "block";
 }

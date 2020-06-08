@@ -58,30 +58,33 @@ app.get("/", async function(req, res) {
   let parsedRows = rows.map(projectData => {
     let parsedProjectData = {};
 
-    parsedProjectData["rowId"] = projectData["rowId"],
-    parsedProjectData["Reviewed"] = JSON.parse(projectData["Reviewed"]),
-    parsedProjectData["ProjectId"] = projectData["ProjectId"],
-    parsedProjectData["alien"] = projectData["alien"],
-    parsedProjectData["rocket"] = projectData["rocket"],
-    parsedProjectData["globe"] = projectData["globe"],
-    parsedProjectData["rainbow"] = projectData["rainbow"],
-    parsedProjectData["lightbulb"] = projectData["lightbulb"],
-    parsedProjectData["Primary Image"] = JSON.parse(projectData["Primary Image"]),
-    parsedProjectData["Timestamp"] = JSON.parse(projectData["Timestamp"]),
-    parsedProjectData["Project Name"] = JSON.parse(projectData["Project Name"]),
-    parsedProjectData["Project Description"] = JSON.parse(projectData["Project Description"]),
-    parsedProjectData["Student Names"] = JSON.parse(projectData["Student Names"]),
-    parsedProjectData["Age Range"] = JSON.parse(projectData["Age Range"]),
-    parsedProjectData["Project Category"] = JSON.parse(projectData["Project Category"]),
-    parsedProjectData["Organization or Program Affiliation"] = JSON.parse(projectData["Organization or Program Affiliation"]),
-    parsedProjectData["Images"] = JSON.parse(projectData["Images"]),
-    parsedProjectData["Video"] = JSON.parse(projectData["Video"]),
-    parsedProjectData["Slides"] = JSON.parse(projectData["Slides"]),
-    parsedProjectData["Links"] = JSON.parse(projectData["Links"]),
-    parsedProjectData["Audio"] = JSON.parse(projectData["Audio"]),
-    parsedProjectData["More About Our Project"] = JSON.parse(projectData["More About Our Project"]),
-    parsedProjectData["Student Count"] = JSON.parse(projectData["Student Count"]),
-    parsedProjectData["Schools"] = JSON.parse(projectData["Schools"])
+    parsedProjectData["rowId"] = projectData["rowId"];
+    parsedProjectData["Reviewed"] = JSON.parse(projectData["Reviewed"]);
+    parsedProjectData["ProjectId"] = projectData["ProjectId"];
+    parsedProjectData["alien"] = projectData["alien"];
+    parsedProjectData["rocket"] = projectData["rocket"];
+    parsedProjectData["globe"] = projectData["globe"];
+    parsedProjectData["rainbow"] = projectData["rainbow"];
+    parsedProjectData["lightbulb"] = projectData["lightbulb"];
+    parsedProjectData["Primary Image"] = JSON.parse(projectData["Primary Image"]);
+    parsedProjectData["Timestamp"] = JSON.parse(projectData["Timestamp"]);
+    parsedProjectData["Project Name"] = JSON.parse(projectData["Project Name"]);
+    parsedProjectData["Project Description"] = JSON.parse(projectData["Project Description"]);
+    parsedProjectData["Student Names"] = JSON.parse(projectData["Student Names"]);
+    parsedProjectData["Age Range"] = JSON.parse(projectData["Age Range"]);
+    parsedProjectData["Project Category"] = JSON.parse(projectData["Project Category"]);
+    parsedProjectData["Organization or Program Affiliation"] = JSON.parse(projectData["Organization or Program Affiliation"]);
+    parsedProjectData["Images"] = JSON.parse(projectData["Images"]);
+    parsedProjectData["Video"] = JSON.parse(projectData["Video"]);
+    parsedProjectData["Slides"] = JSON.parse(projectData["Slides"]);
+    parsedProjectData["Links"] = JSON.parse(projectData["Links"]);
+    parsedProjectData["Audio"] = JSON.parse(projectData["Audio"]);
+    parsedProjectData["More About Our Project"] = JSON.parse(projectData["More About Our Project"]);
+    parsedProjectData["Student Count"] = JSON.parse(projectData["Student Count"]);
+    parsedProjectData["Schools"] = JSON.parse(projectData["Schools"]);
+    if (projectData["Award Name"]) {
+      parsedProjectData["Award Name"] = JSON.parse(projectData["Award Name"]);
+    }
 
     return parsedProjectData;
   })
