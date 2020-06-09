@@ -110,6 +110,8 @@ if (awardsVideoButton && keynoteVideoButton) {
 function switchToAwards() {
   awardsVideoButton.classList.add("active-video-tab");
   keynoteVideoButton.classList.remove("active-video-tab");
+  awardsVideoButton.innerHTML = "Awards Ceremony";
+  keynoteVideoButton.innerHTML = "Switch to Keynote";
   document.getElementById("keynote").style.display = "none";
   document.getElementById("awards").style.display = "block";
 }
@@ -117,6 +119,8 @@ function switchToAwards() {
 function switchToKeynote() {
   keynoteVideoButton.classList.add("active-video-tab");
   awardsVideoButton.classList.remove("active-video-tab");
+  awardsVideoButton.innerHTML = "Switch to Awards Ceremony";
+  keynoteVideoButton.innerHTML = "Keynote";
   document.getElementById("awards").style.display = "none";
   document.getElementById("keynote").style.display = "block";
 }
