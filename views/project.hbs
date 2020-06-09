@@ -101,7 +101,7 @@
                 <img src="https://drive.google.com/uc?export=view&id={{ this }}" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." />
               </a>-->
 
-              <a href="{{ this }}">
+              <a href="{{ this }}" target="_blank">
                 <img src="{{ this }}" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." />
               </a>
             </div>
@@ -118,9 +118,17 @@
         </h4>
         {{#each projectData.[Audio].urls}}
           <!--{{! Edit URL to make hotlinkable }}-->
+          <!--
           <a href="https://drive.google.com/uc?export=view&id={{this}}">
             <audio controls>
               <source src="https://drive.google.com/uc?export=view&id={{this}}" type="audio/mpeg">
+              Your browser does not support the audio element.
+            </audio>
+          </a>
+          -->
+          <a href="{{this}}">
+            <audio controls>
+              <source src="{{this}}" type="audio/mpeg">
               Your browser does not support the audio element.
             </audio>
           </a>
@@ -154,7 +162,7 @@
         </h4>
         {{#if projectData.[Video].video}}
           {{#each projectData.[Video].urls}}
-            <!--{{! Edit URL to make hotlinkable }}-->
+            <!--
             <a href="https://drive.google.com/uc?export=view&id={{this}}">
               <video class="video-embed" controls>
                 <source src="https://drive.google.com/uc?export=view&id={{this}}" type="video/mp4">
@@ -162,10 +170,21 @@
               </video>
             </a>
             <br/>
-            <!--{{! Edit URL to make hotlinkable }}-->
             <a class="project-link button" href="https://drive.google.com/open?id={{this}}" target="_blank">
               <h4>Open Video in a new tab</h4>
             </a>
+            -->
+            <!--{{! Edit URL to make hotlinkable }}-->
+            <video class="video-embed" controls>
+              <source src="{{this}}" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <!--
+            <br/>
+            <a class="project-link button" href="{{this}}" target="_blank">
+              <h4>Open Video in a new tab</h4>
+            </a>
+            -->
           {{/each}}
         {{/if}}
       </div>
@@ -268,7 +287,9 @@
 
     {{#if responsesData.rows.length }}
     
+    {{#if responsesData}}{{#if responsesData.judgeResponses}}
     <h3>Feedback from the Judges:</h3>
+    {{/if}}{{/if}}
 
     <ul class="response-list">
       {{#each responsesData.judgeResponses }}
@@ -288,7 +309,11 @@
         {{/if}}
       {{/each}}
     </ul>
+
+
+    {{#if responsesData}}{{#if responsesData.publicResponses}}
     <h3>Feedback from the Community:</h3>
+    {{/if}}{{/if}}
     <ul class="response-list">
       {{#each responsesData.publicResponses }}
         {{#if this.[Public Feedback]}}

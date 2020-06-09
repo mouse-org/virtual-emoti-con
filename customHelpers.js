@@ -37,6 +37,21 @@ module.exports = function(hbs) {
     return new hbs.SafeString(text);
   });
 
+  hbs.registerHelper('twitterImage', function(singleProject, projectData) {
+    if (
+      singleProject
+      && projectData["Primary Image"]
+      && projectData["Primary Image"].images
+      && projectData["Primary Image"].urls
+      && projectData["Primary Image"].urls[0]
+    ) {
+      return `https://drive.google.com/uc?export=view&id=${projectData["Primary Image"].urls[0]}`
+    } else {
+      return "/images/social-card-logo.png";
+    }
+    
+  })
+
   hbs.registerHelper('socialImage', function(singleProject, projectData) {
     if (
       singleProject
@@ -47,7 +62,7 @@ module.exports = function(hbs) {
     ) {
       return `https://drive.google.com/uc?export=view&id=${projectData["Primary Image"].urls[0]}`
     } else {
-      return "https://virtual.emoti-con.org/images/social-card.png";
+      return "/images/emoti-con-header.gif";
     }
     
   })
@@ -59,7 +74,7 @@ module.exports = function(hbs) {
 
     let tweetText = '';
     if (projectData["Project Name"]) {
-      tweetText += "Take a look at " + projectData["Project Name"] + " a project in the Emoti-Con NYC Project Fair! "
+      tweetText += "Take a look at " + projectData["Project Name"] + " a project in the %23EmotiCon2020 NYC Virtual Project Fair! "
     }
 
     if (projectData.rowId) {

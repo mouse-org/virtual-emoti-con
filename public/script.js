@@ -6,11 +6,22 @@ const emojis = {
   lightbulb: "💡"
 }
 
-
+let sentReactions = {};
+var pleaseDontSpamTheAPIThanks = "its_not_in_the_spirit_of_emoticon"
 
 function sendReaction(projectId, reaction) {
   //console.log("project id:", projectId);
   //console.log("reaction:", reaction);
+
+  if (sentReactions[projectId] && sentReactions[projectId] > 10) {
+    return;
+  }
+
+  if (!sentReactions[projectId]) {
+    sentReactions[projectId] = 0;
+  }
+
+  sentReactions[projectId] += 1;
 
   displayReaction(emojis[reaction]);
   
@@ -18,7 +29,7 @@ function sendReaction(projectId, reaction) {
   const counterBefore = document.getElementById(counterIdBefore);
   counterBefore.innerHTML = Number.isNaN(parseInt(counterBefore.innerHTML)) ? 1 : parseInt(counterBefore.innerHTML) + 1;
   
-  fetch(`/api/${projectId}/${reaction}/plus-one`)
+  fetch(`/api/${projectId}/${reaction}/plus-one?key=${pleaseDontSpamTheAPIThanks}`)
   .then((response) => {
     return response.json();
   })
@@ -45,49 +56,11 @@ function sendReaction(projectId, reaction) {
 }
 
 
-function sendPublicFeedback(projectId, event) {
-  event.preventDefault();
-  console.log("Sending Public Feedback:")
-  var feedbackInput = document.getElementById("public-feedback-feedback");
-  var feedback = feedbackInput.value;
-  feedbackInput.value = "";
-  
-  var authorInput = document.getElementById("public-feedback-author");
-  var author = authorInput.value;
-  authorInput.value = "";
-  
-  console.log("feedback:", feedback);
-  console.log("author:", author);
-  
-  var baseUrl = `/api/${projectId}/public-feedback`;
-  var url = `${baseUrl}?author=${author}&feedback=${feedback}`;
-  
-  console.log("url:", url);
-  
-  fetch(url)
-  .then((response) => {
-    return response.json();
-  })
-  .then((data) => {
-    console.log(data);
-    if (data.error) {
-      throw "Could save feedback."
-    }
-  })
-  .catch(error => {
-    console.log("Error: ", error);
-  })
-  
-}
-
-
 var publicFeedbackSubmit = document.getElementById("public-feedback-submit");
-  if (publicFeedbackSubmit) {
+if (publicFeedbackSubmit) {
   var projectId = document.getElementById("project-id").innerHTML.trim();
   publicFeedbackSubmit.addEventListener('click', sendPublicFeedback.bind(this, projectId));
 }
-
-
 
 function displayReaction(emoji) {
   const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
@@ -124,4 +97,30 @@ function copyLink(projectId) {
 
   /* Alert the copied text */
   alert("Copied the text: " + copyText.value);
+}
+
+
+var awardsVideoButton = document.getElementById("awards-tab");
+var keynoteVideoButton = document.getElementById("keynote-tab");
+if (awardsVideoButton && keynoteVideoButton) {
+  awardsVideoButton.addEventListener('click', switchToAwards);
+  keynoteVideoButton.addEventListener('click', switchToKeynote);
+}
+
+function switchToAwards() {
+  awardsVideoButton.classList.add("active-video-tab");
+  keynoteVideoButton.classList.remove("active-video-tab");
+  awardsVideoButton.innerHTML = "Awards Ceremony";
+  keynoteVideoButton.innerHTML = "Switch to Keynote";
+  document.getElementById("keynote").style.display = "none";
+  document.getElementById("awards").style.display = "block";
+}
+
+function switchToKeynote() {
+  keynoteVideoButton.classList.add("active-video-tab");
+  awardsVideoButton.classList.remove("active-video-tab");
+  awardsVideoButton.innerHTML = "Switch to Awards Ceremony";
+  keynoteVideoButton.innerHTML = "Keynote";
+  document.getElementById("awards").style.display = "none";
+  document.getElementById("keynote").style.display = "block";
 }

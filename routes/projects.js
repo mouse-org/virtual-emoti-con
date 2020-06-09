@@ -22,7 +22,68 @@ const ProjectData = require("../models/ProjectData");
 const errorText = "Sorry, you discovered an error! Email help@mouse.org if you continue seeing this error.";
 
 router.get("/", async function(req, res) {
-  const sheetData = await getSpreadsheetData(doc);
+  
+  //const sheetData = await getSpreadsheetData(doc);
+  
+
+  const rows = await ProjectData.find();
+
+  let parsedRows = rows.map(projectData => {
+    let parsedProjectData = {};
+
+    parsedProjectData["rowId"] = projectData["rowId"];
+    parsedProjectData["Reviewed"] = JSON.parse(projectData["Reviewed"]);
+    parsedProjectData["ProjectId"] = projectData["ProjectId"];
+    parsedProjectData["alien"] = projectData["alien"];
+    parsedProjectData["rocket"] = projectData["rocket"];
+    parsedProjectData["globe"] = projectData["globe"];
+    parsedProjectData["rainbow"] = projectData["rainbow"];
+    parsedProjectData["lightbulb"] = projectData["lightbulb"];
+    parsedProjectData["Primary Image"] = JSON.parse(projectData["Primary Image"]);
+    parsedProjectData["Timestamp"] = JSON.parse(projectData["Timestamp"]);
+    parsedProjectData["Project Name"] = JSON.parse(projectData["Project Name"]);
+    parsedProjectData["Project Description"] = JSON.parse(projectData["Project Description"]);
+    parsedProjectData["Student Names"] = JSON.parse(projectData["Student Names"]);
+    parsedProjectData["Age Range"] = JSON.parse(projectData["Age Range"]);
+    parsedProjectData["Project Category"] = JSON.parse(projectData["Project Category"]);
+    parsedProjectData["Organization or Program Affiliation"] = JSON.parse(projectData["Organization or Program Affiliation"]);
+    parsedProjectData["Images"] = JSON.parse(projectData["Images"]);
+    parsedProjectData["Video"] = JSON.parse(projectData["Video"]);
+    parsedProjectData["Slides"] = JSON.parse(projectData["Slides"]);
+    parsedProjectData["Links"] = JSON.parse(projectData["Links"]);
+    parsedProjectData["Audio"] = JSON.parse(projectData["Audio"]);
+    parsedProjectData["More About Our Project"] = JSON.parse(projectData["More About Our Project"]);
+    parsedProjectData["Student Count"] = JSON.parse(projectData["Student Count"]);
+    parsedProjectData["Schools"] = JSON.parse(projectData["Schools"]);
+    if (projectData["Award Name"]) {
+      parsedProjectData["Award Name"] = JSON.parse(projectData["Award Name"]);
+    }
+    
+
+    return parsedProjectData;
+  })
+
+  parsedRows = parsedRows.sort((a,b) => {
+    let p = "Project Name"
+    let aProjectName = '';
+    let bProjectName = '';
+
+    if (a[p]) {
+      aProjectName = a[p].toUpperCase();
+    }
+
+    if (b[p]) {
+      bProjectName = b[p].toUpperCase();
+    }
+
+    return aProjectName > bProjectName ? 1 : -1;   
+  });
+
+  const allProjects = {
+    rows: parsedRows
+  }
+
+  /*
   if (sheetData && sheetData.rows) {
     const renderData = Object.assign({}, templateData, sheetData);
 
@@ -30,6 +91,16 @@ router.get("/", async function(req, res) {
   } else {
     res.redirect("/404");
   }
+  */
+
+  if (allProjects) {
+    const renderData = Object.assign({}, templateData, allProjects);
+
+    res.render("projectsIndex", renderData);
+  } else {
+    res.redirect("/404");
+  }
+  
 });
 
 router.get("/random", async function(req, res) {
@@ -41,6 +112,9 @@ router.get("/random", async function(req, res) {
     if (sheetData && sheetData.rows) {
       const numberOfProjects = sheetData.rows.length;
       const randomIndex = 2 + Math.floor(Math.random() * Math.floor(numberOfProjects));
+      if (randomIndex === 9 || randomIndex === 10) {
+        randomIndex += Math.floor(Math.random() * Math.floor(40));
+      }
       res.redirect("/projects/" + randomIndex + "?random=true");
     } else {
       res.redirect("/404");
@@ -48,7 +122,7 @@ router.get("/random", async function(req, res) {
   }  
 })
 
-router.get("/:projectId", async function(req, res) {
+router.get("/sheet-version/:projectId", async function(req, res) {
   const projectSheetIndex = 0;
   const responsesSheetIndex = 1;
   const rowIndex = parseInt(req.params.projectId) - 2;
@@ -147,7 +221,7 @@ router.get("/:projectId", async function(req, res) {
   
 })
 
-router.get("/m/:projectId", async function(req, res) {
+router.get("/:projectId", async function(req, res) {
   const projectSheetIndex = 0;
   const responsesSheetIndex = 1;
   const rowIndex = parseInt(req.params.projectId) - 2;
@@ -204,7 +278,8 @@ router.get("/m/:projectId", async function(req, res) {
     parsedProjectData["Audio"] = JSON.parse(projectData["Audio"]),
     parsedProjectData["More About Our Project"] = JSON.parse(projectData["More About Our Project"]),
     parsedProjectData["Student Count"] = JSON.parse(projectData["Student Count"]),
-    parsedProjectData["Schools"] = JSON.parse(projectData["Schools"])
+    parsedProjectData["Schools"] = JSON.parse(projectData["Schools"]),
+    parsedProjectData["Award Name"] = JSON.parse(projectData["Award Name"])
 
   } catch (error) {
     console.log("Error:")
