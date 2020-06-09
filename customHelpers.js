@@ -10,6 +10,20 @@ module.exports = function(hbs) {
     }
   });
 
+  hbs.registerHelper('isNotHonorableMention', function(awardName) {
+    if (!awardName || awardName === "Honorable Mention") {
+      return false;
+    }
+    return true;
+  });
+
+  hbs.registerHelper('isHonorableMention', function(awardName) {
+    if (awardName === "Honorable Mention") {
+      return true;
+    }
+    return false;
+  });
+
   hbs.registerHelper("projectCategory", function(fullProjectCategory) {
     // Examples:
     // "Activism & Social Change - Technology-infused social action projects"

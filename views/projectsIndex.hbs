@@ -47,6 +47,7 @@
 
     {{#each rows }}
       {{#if [Award Name] }}
+      {{#if (isNotHonorableMention [Award Name]) }}
         <a href="/projects/{{rowId}}" class="index-link"><div class="index-project">
 
           <!-- Project Name Header -->
@@ -115,6 +116,84 @@
           {{/if}}
 
         </div></a>
+      {{/if }}
+      {{/if }}
+    {{/each}}
+  </div>
+
+  <div class="index-projects-list">
+    {{#each rows }}
+      {{#if [Award Name] }}
+      {{#if (isHonorableMention [Award Name]) }}
+        <a href="/projects/{{rowId}}" class="index-link"><div class="index-project">
+
+          <!-- Project Name Header -->
+          {{#if [Project Name] }}
+          {{#if rowId }}
+          <h2 class="project-name">
+            <!--<a href="/projects/{{rowId}}">-->
+            “{{ [Project Name] }}”
+            <!--</a>-->
+          </h2>
+          {{#if [Award Name] }}
+            <h3 class="award-banner">
+              {{ [Award Name] }} Award
+            </h3>
+          {{/if }}
+          {{/if}}
+          {{/if}}
+
+          <!-- Type of project -->
+          {{#if [Project Category] }}
+          <h4 class="project-header">
+            {{ projectCategory [Project Category] }}
+          </h4>
+          {{/if}}
+
+          <!-- Student names or count -->
+
+          {{#if (over2Students [Student Count]) }}
+            {{#if [Student Count] }}
+              <h3 class="project-header">
+                By {{ [Student Count] }} Students
+              </h3>
+            {{/if }}
+          {{else }}
+            {{#if [Student Names] }}
+              <h3 class="project-header">
+                By {{ [Student Names] }}
+              </h3>
+            {{/if }}
+          {{/if }}
+
+          
+          
+          <!-- School or Program Header -->
+          {{#if [Organization or Program Affiliation] }}
+          <h4 class="project-header">
+            From {{ [Organization or Program Affiliation] }}
+          </h4>
+          {{/if}}
+
+          <!-- Primary Image -->
+          {{#if [Primary Image] }}
+            {{#if [Primary Image].images}}
+              {{#each [Primary Image].urls}}
+                <div class="image">
+                  <!--{{! Edit URL to make hotlinkable }}-->
+                    <!--<img src="https://drive.google.com/uc?export=view&id={{this}}" style="width: 500px; max-width: 100%; height: auto" />-->
+                    <img src="{{this}}" style="width: 500px; max-width: 100%; height: auto" />
+                </div>
+              {{/each}}
+            {{/if}}
+          {{else}}
+            <div class="image">
+              <img src="/images/radio.png" style="width: 500px; max-width: 100%; height: auto" />
+            </div>
+          {{/if}}
+
+        </div></a>
+      {{/if }}
       {{/if }}
     {{/each}}
   </div>
