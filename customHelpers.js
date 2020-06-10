@@ -59,7 +59,7 @@ module.exports = function(hbs) {
       && projectData["Primary Image"].urls
       && projectData["Primary Image"].urls[0]
     ) {
-      return `https://drive.google.com/uc?export=view&id=${projectData["Primary Image"].urls[0]}`
+      return projectData["Primary Image"].urls[0]
     } else {
       return "/images/social-card-logo.png";
     }
@@ -74,7 +74,7 @@ module.exports = function(hbs) {
       && projectData["Primary Image"].urls
       && projectData["Primary Image"].urls[0]
     ) {
-      return `https://drive.google.com/uc?export=view&id=${projectData["Primary Image"].urls[0]}`
+      return projectData["Primary Image"].urls[0]
     } else {
       return "/images/emoti-con-header.gif";
     }
