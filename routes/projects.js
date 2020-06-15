@@ -151,6 +151,7 @@ router.get("/:projectId", async function(req, res) {
 
   if (Number.isNaN(parseInt(req.params.projectId)) || parseInt(req.params.projectId) < 2) {
     res.redirect("/404");
+    return;
   }
   
   /*
@@ -272,15 +273,8 @@ router.get("/:projectId", async function(req, res) {
     console.log("Error:")
     console.log(error);
     res.render("error", {error: errorText});
-
   }
 
-
-  
-})
-
-router.use("*", function(req, res) {
-  res.render("error", {error: "Page not found"});
-})
+});
 
 module.exports = router
