@@ -177,8 +177,6 @@ router.get("/:projectId", async function(req, res) {
     var projectData = await ProjectData.findOne({rowId: req.params.projectId}).exec();
 
     var parsedProjectData = {};
-    var parsedProjectData2 = {};
-
     
     const allowListValues = [
       "rowId", "Reviewed", "ProjectId", "alien", "rocket",
