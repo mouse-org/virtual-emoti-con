@@ -109,16 +109,6 @@ app.get("/", async function(req, res) {
     rows: parsedRows
   }
 
-  /*
-  if (sheetData && sheetData.rows) {
-    const renderData = Object.assign({}, templateData, sheetData);
-
-    res.render("projectsIndex", renderData);
-  } else {
-    res.redirect("/404");
-  }
-  */
-
   if (allProjects) {
     const renderData = Object.assign({}, templateData, allProjects);
 
