@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+  var projectId;
+  while (!projectId || projectId === 10 || projectId === 9) {
+    projectId = Math.floor(Math.random() * 85) + 2;
+  }
+  window.location = "/projects/" + projectId;
+</script>
+</head>
+<body>
+<h1>Finding a random project</h1>
+</body>
+</html>
