@@ -5,7 +5,7 @@
 
 Everything below is for the dyanmic version of the site, this version is a new static version of the site with just html files.
 
-
+---
 
 
 Virtual Emoti-Con is kind of a mess, sorry! To be honest, I wouldn’t recommend re-using this code, and more just using the lessons learned when designing a future Virtual Emoti-Con website.
