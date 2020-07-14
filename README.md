@@ -1,5 +1,13 @@
 # Virtual Emoticon
 
+
+# Update 7/14/20
+
+Everything below is for the dyanmic version of the site, this version is a new static version of the site with just html files.
+
+---
+
+
 Virtual Emoti-Con is kind of a mess, sorry! To be honest, I wouldn’t recommend re-using this code, and more just using the lessons learned when designing a future Virtual Emoti-Con website.
 
 ### Lessons Learned from this Project:
@@ -28,7 +36,7 @@ Virtual Emoti-Con is kind of a mess, sorry! To be honest, I wouldn’t recommend
   - Removing from MongoDB database:
     - Login to Heroku
     - accounts@mouse.org
-    - Look up in lastpass ¯\_(ツ)_/¯ 
+    - Look up in lastpass ¯\\_(ツ)_/¯ 
     - Click on virtual-emoti-con project
     - Go to Resources tab
     - Click on mLab MongoDB (will open in a new tab)
@@ -44,7 +52,7 @@ Virtual Emoti-Con is kind of a mess, sorry! To be honest, I wouldn’t recommend
   - Delete project from MongoDB
   - Edit the field in the Google Sheet
   - Go to:
-    - https://virtual.emoti-con.org/sync/projects/data/PROJECTID?p=9247894c-5ec8-400b-bcf5-2e35b03631fa
+    - https://virtual.emoti-con.org/sync/projects/data/PROJECTID?p=[LONG STRING PASSWORD]
     - With the PROJECTID text replaced with the project’s id
     - The sync key at the end is stored in the project’s ENV variables
   - Double check to make sure everything worked correctly by viewing the project in the frontend.

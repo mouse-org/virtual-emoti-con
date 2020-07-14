@@ -1,0 +1,167 @@
+body {
+  font-family: 'Signika', sans-serif;
+}
+
+#header-logo-container {
+  text-align: center;
+  width: 100%;
+  text-align: center;
+}
+
+#header-logo-container img {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 750px;
+}
+
+#nav-section {
+  text-align: center;
+}
+
+#nav-section h2{
+  font-size: 20px;
+}
+
+.button {
+  box-shadow: -5px 5px #CFCFCF;
+  border: 1px solid #CFCFCF;
+  display: inline-block;
+  margin: 10px;
+  background-color: #FFDAE7;
+  padding: 3px;
+  border-radius: 2px;
+}
+
+.button a {
+  text-decoration: none;
+  color: black;
+  display: inline-block;
+  margin: 5px 10px;
+}
+
+.button:hover {
+  box-shadow: -5px 5px #AFAFAF;
+  border: 1px solid #AFAFAF;
+  cursor: pointer;
+  background-color: #FFD9E6;
+}
+
+.button a:hover {
+  text-decoration: underline
+}
+
+.button:active {
+  box-shadow: -2px 2px #8F8F8F;
+  border: 1px solid #8F8F8F;
+  background-color: #E6C3CF;
+  position: relative;
+  top: 3px;
+  left: -3px;
+}
+
+.button h2, h4 {
+  margin: 7px 3px;
+}
+
+.active-page-nav-button {
+  background-color: #ffc9e7;
+}
+
+#terms-container {
+  margin-top: 4em;
+  font-family: 'Signika', sans-serif;
+  text-align: center;
+}
+
+#terms-container a {
+  color: #3F3F3F;
+}
+
+#terms-container a:hover {
+  text-decoration: underline;
+}
+
+
+/* Color */
+
+.lb-bg {
+  background-color: #4cc7f8;
+  color: white;
+}
+
+.lg-bg {
+  background-color: #4cf8b6;
+}
+
+.pink-bg {
+  background-color: #ffdae7;
+}
+
+.pink-text {
+  color: #ff00ff;
+}
+
+.black-text {
+  color: black;
+}
+
+/* Text */
+
+.highlight {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 22px;
+  line-height: 28px;
+  max-width: 600px;
+  text-align: justify;
+  margin: 10px 0;
+  border-radius: 1px;
+}
+
+.lg-highlight {
+  font-size: 32px;
+  line-height: 38px;
+}
+
+@media (max-width: 500px) {
+  .lg-highlight {
+    font-size: 24px;
+    line-height: 26px;
+  }
+}
+
+.med-highlight {
+  font-size: 30px;
+  line-height: 34px;
+}
+
+.big-highlight {
+  font-size: 28px;
+  line-height: 32px;
+}
+
+/* Error */
+
+#error-page {
+  text-align: center;
+}
+
+
+/* Footer */
+
+.image-list {
+  padding: 0;
+}
+
+.image-list li {
+  list-style-type: none;
+  display: inline-block;
+  max-width: 100px;
+  padding: 0 10px;
+  vertical-align: top;
+}
+
+.image-list li img {
+  max-width: 100px;
+  display: inline-block;
+}
