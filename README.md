@@ -5,6 +5,8 @@
 
 Everything below is for the dyanmic version of the site, this version is a new static version of the site with just html files.
 
+The static version lives in the /docs folder
+
 GitHub Pages made me choose a Jeckyll theme even though we're not using Jeckyll.
 
 ---
