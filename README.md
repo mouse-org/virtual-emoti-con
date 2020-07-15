@@ -5,7 +5,28 @@
 
 Everything below is for the dyanmic version of the site, this version is a new static version of the site with just html files.
 
+The static site was generated with the following:
+
 The static version lives in the /docs folder.
+
+```
+cp -r public docs
+mkdir docs/about
+mkdir docs/projects
+mkdir docs/projects/random
+# random project route now uses window.location on the frontend
+curl localhost:3000 >> docs/index.html
+
+curl localhost:3000/about >> docs/about/index.html
+curl localhost:3000 >> docs/projects/index.html
+curl localhost:3000/lafdjafsd >> docs/404.html
+
+for i in {2..91}
+do mkdir docs/projects/$i
+curl localhost:3000/projects/$i >> docs/projects/$i/index.html
+done
+```
+
 
 GitHub Pages made me choose a Jeckyll theme even though we're not using Jeckyll.
 
