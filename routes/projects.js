@@ -4,9 +4,17 @@ var router = express.Router()
 const FAVICON_URL = "https://cdn.glitch.com/0e6dc89f-4128-4c89-b997-8fa6f2d9cc71%2Femoti-con_logo_square.png?v=1586189918610";
 
 const { GoogleSpreadsheet } = require('google-spreadsheet');
-const doc = new GoogleSpreadsheet(process.env.SPREADSHEET_ID);
 
-const getSpreadsheetData = require("../helpers/spreadsheet");
+let getSpreadsheetData;
+let doc;
+if (process.env.SPREADSHEET_ID){
+  doc = new GoogleSpreadsheet(process.env.SPREADSHEET_ID);
+
+  getSpreadsheetData = require("../helpers/spreadsheet");
+} else {
+  doc = null;
+  getSpreadsheetData = () => ({});
+}
 
 const reactions = require("../helpers/reactions");
 
@@ -189,7 +197,7 @@ router.get("/:projectId", async function(req, res) {
     ]
 
     allowListValues.forEach(i => {
-      if (projectData[i]) {
+      if (projectData && projectData[i]) {
         try {
           parsedProjectData[i] = JSON.parse(projectData[i]);
         } catch (error) {
@@ -212,6 +220,9 @@ router.get("/:projectId", async function(req, res) {
   try {
     var responsesSheetData = await getSpreadsheetData(doc, responsesSheetIndex);
     
+    if (!responsesSheetData || !responsesSheetData.rows) {
+      throw `Invalid responses response from spreadsheet`;
+    }
     responsesSheetData.rows = responsesSheetData.rows.filter(i => {
       return i["Project ID:"] === req.params.projectId;
     });
